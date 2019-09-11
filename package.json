@@ -15,7 +15,7 @@
   "author": "Geovanny F. Fajardo",
   "license": "ISC",
   "dependencies": {
-    "brain.js": "^1.6.0",
+    "brain.js": "1.6.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
