@@ -12,6 +12,6 @@ export let addition = () => {
       trainingOptions: { errorThresh: 0.025 },
     })
   )
-  let additionInput = '2+1='
+  let additionInput = '1+1='
   console.log({ additionInput, additionOutput: neuroAddition.run(additionInput) })
 }
