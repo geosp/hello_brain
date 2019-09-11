@@ -4,7 +4,7 @@
 
 This project implements the examples outlined by the following trining video [Neural Networks with JavaScript - Full Course using Brain.js](https://youtu.be/6E6XecoTRVo)
 
-## Immplementation
+## Implementation
 
 The examples implemented currently are:
 
