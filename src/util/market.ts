@@ -24,5 +24,5 @@ export let getExtremes = _.flow(
 )
 export let normalizeMarketData = _.curry((data, extremes) =>
   processData({ data, extremes, fn: normalize }))
-export let denormalizeMarketData = _.curry((data, extremes) =>
-  processData({ data, extremes, fn: denormalize }))
+export let denormalizeMarketData = _.curry((data, extremes) => 
+processData({data: [data], extremes, fn: denormalize}))
