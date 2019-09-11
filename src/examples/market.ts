@@ -20,7 +20,7 @@ export let market = () => {
       getExtremes,
       denormalizeMarketData(data)
     )(marketData)
-  
+  const trainingData = marketDataPreprocessor(marketData)
   let neuroMarket = new brain.recurrent.LSTMTimeStep()
   neuroMarket.fromJSON(
     train({
@@ -32,14 +32,13 @@ export let market = () => {
       prepocessor: marketDataPreprocessor,
     })
   )
-  let marketInput = [
-    {
-      open: 0.6143595883694769,
-      high: 0.7425657752134043,
-      low: 0.5876882425193283,
-      close: 0.6789736073408139,
-    },
-  ]
+  let marketInput = [trainingData[0][0]]
   let marketOutput = neuroMarket.run(marketInput)
   console.log({ marketInput, denormailizedMarketOutput: denormailizeData(marketOutput) })
+  let marketForcastInput = [
+    trainingData[0][0],
+    trainingData[0][1],
+  ]
+  let marketForcastOutput = neuroMarket.forecast(marketForcastInput)
+  console.log({ marketForcastInput, denormailizedMarketOutput: denormailizeData(marketForcastOutput[0]) })
 }
