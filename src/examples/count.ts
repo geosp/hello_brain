@@ -12,5 +12,5 @@ export let count = () => {
     })
   )
   let countInput = [1, 2, 3]
-  console.log({ countInput, colorOutput: neuroCount.run(countInput) })
+  console.log({ countInput, countOutput: neuroCount.run(countInput) })
 }
