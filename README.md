@@ -16,6 +16,7 @@ The examples implemented currently are:
 * restaurants
 * addition
 * readNumber
+* book
 
 The training data is in the `data/training` folder. The resulting neuronet is stored in the `data/neuronet` folder.
 
