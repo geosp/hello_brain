@@ -25,12 +25,12 @@ export let market = () => {
       prepocessor: marketDataPreprocessor,
     })
   )
-  let marketInput = {
+  let marketInput = [{
     open: 0.6143595883694769,
     high: 0.7425657752134043,
     low: 0.5876882425193283,
     close: 0.6789736073408139,
-  }
+  }]
 
   console.log({ marketInput, marketOutput: neuroMarket.run(marketInput) })
 }
