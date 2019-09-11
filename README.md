@@ -19,5 +19,6 @@ The training data is in the `data/training` folder. The resulting neuronet is st
 
 ## Running the examples
 1. `npm install`
+2. Keep `npm run watch` running or run `npm run build:js` everytime a change is made.
 2. `npm start [exmple_name]`
 
