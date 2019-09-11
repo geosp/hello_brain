@@ -4,6 +4,7 @@ import { colors } from './examples/colors'
 import { restaurants } from './examples/restaurants'
 import { count } from './examples/count'
 import { market } from './examples/market'
+import { addition } from './examples/addition'
 
 const params = process.argv.slice(2)
 
@@ -13,6 +14,7 @@ const examples = {
   colors,
   restaurants,
   count,
-  market
+  market,
+  addition
 }
 examples[params[0]]()
