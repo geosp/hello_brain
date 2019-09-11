@@ -10,7 +10,6 @@ export let train = ({ brainType, prepocessor = x => x, retrain, name, options = 
     let neuro = new brainType(options)
     console.log({ message: 'Training...', data: JSON.stringify(trainingData), trainingOptions })
     neuro.train(trainingData, { log: console.log, logPeriod: 100, ...trainingOptions })
-    if(retrain) return neuro
     neuronet = neuro.toJSON()
     fs.writeFileSync(neuroNetPath, JSON.stringify(neuronet))
   } else {
