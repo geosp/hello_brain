@@ -17,6 +17,7 @@ The examples implemented currently are:
 * addition
 * readNumber
 * book
+* sentiment
 
 The training data is in the `data/training` folder. The resulting neuronet is stored in the `data/neuronet` folder.
 

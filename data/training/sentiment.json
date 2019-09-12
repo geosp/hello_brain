@@ -1,0 +1,6 @@
+[
+  { "input": "I am super happy!", "output": "happy" },
+  { "input": "What a pill!", "output": "sarcastic" },
+  { "input": "I am super unhappy!", "output": "sad" },
+  { "input": "Are we there yet?", "output": "excited" }
+]

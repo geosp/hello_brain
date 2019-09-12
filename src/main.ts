@@ -7,6 +7,7 @@ import { market } from './examples/market'
 import { addition } from './examples/addition'
 import { readNumber } from './examples/readNumber'
 import { book } from './examples/book'
+import { sentiment } from './examples/sentiment'
 
 const params = process.argv.slice(2)
 
@@ -19,6 +20,7 @@ const examples = {
   market,
   addition,
   readNumber,
-  book
+  book,
+  sentiment
 }
 examples[params[0]]()
