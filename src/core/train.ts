@@ -21,6 +21,5 @@ export let train = ({ brainType, prepocessor = x => x, retrain, name, options = 
     console.log({ message: 'Trained' })
     neuronet = JSON.parse(fs.readFileSync(neuroNetPath, 'utf8'))
   }
-
   return neuronet
 }
