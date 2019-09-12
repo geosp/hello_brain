@@ -19,7 +19,10 @@ The examples implemented currently are:
 * book
 * sentiment
 
-The training data is in the `data/training` folder. The resulting neuronet is stored in the `data/neuronet` folder.
+The training data is in the `data/training` folder. The resulting network is stored in the `data/neuronet` folder.
+The train function in the examples persist the network state. If you make changes to the training data or the options
+set the retrain option to true or delete the associated JSON file under `data/neuronet`. To stop training set 
+retrain to false.
 
 ## Running the examples
 1. `npm install`
