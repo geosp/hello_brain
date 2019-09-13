@@ -25,7 +25,7 @@ export let brightness = () => {
       prepocessor,
     })
   )
-  let brightnessInput = { light: 0.55 }
+  let brightnessInput = { light: 0.55, neutral: 0.25 }
   let colorOutput = denormalize(neuroBrightness.run(brightnessInput))
   console.log(
     //@ts-ignore
