@@ -110,18 +110,47 @@ export let readNumber = () => {
 
   let almostNine = normalizeNumber(
     '# # # #' +
-    '#     #' +
-    '#     #' +
-    '# # # #' +
-    '      #' +
-    '       ' +
-    '      #'
-)
+      '#      ' +
+      '#     #' +
+      '# # # #' +
+      '       ' +
+      '      #' +
+      '      #'
+  )
 
+  let almostEight = normalizeNumber(
+    '# # # #' +
+      '#      ' +
+      '#     #' +
+      '# # # #' +
+      '#      ' +
+      '      #' +
+      '#      '
+  )
+
+  let almostSeven = normalizeNumber(
+    '#   # #' +
+      '       ' +
+      '      #' +
+      '    # #' +
+      '       ' +
+      '      #' +
+      '      #'
+  )
+
+  let almostSix = normalizeNumber(
+      '###  ##' +
+      '#      ' +
+      '#      ' +
+      '## ## #' +
+      '#     #' +
+      '      #' +
+      '# ##  #'
+  )
   let numbers = { zero, one, two, three, four, five, six, seven, eight, nine }
   let data = _.flow(
-      _.keys,
-      _.map(key => ({input: numbers[key], output: {[key]: 1}}))
+    _.keys,
+    _.map(key => ({ input: numbers[key], output: { [key]: 1 } }))
   )(numbers)
 
   let neuro = new brain.NeuralNetwork()
@@ -129,11 +158,24 @@ export let readNumber = () => {
     train({
       brainType: brain.NeuralNetwork,
       name: 'readNumber',
-      retrain: false,
-      options: { hiddenLayers: [3] },
-      prepocessor: () => data
+      retrain: true,
+      options: {
+        // Input size 49 and output size 9 so a good number is (inputSize - OutputSize) / 2 for the first layer.
+        // Adding more nodes or an additional layer over fits our neural network so this seems to be the sweet spot.
+        hiddenLayers: [20],
+      },
+      prepocessor: () => data,
     })
   )
-  let numberInput = almostNine
-  console.log({ numberInput: JSON.stringify(numberInput), numberOutput: brain.likely(numberInput, neuro) })
+
+  let testData = [..._.values(numbers), almostSix, almostSeven, almostEight, almostNine]
+  let results = _.map(number => {
+    let label = brain.likely(number, neuro)
+    console.log({
+      input: JSON.stringify(number),
+      output: JSON.stringify(numbers[label])
+    })
+    return label
+  })(testData)
+  console.log({results})
 }

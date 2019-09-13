@@ -14,6 +14,7 @@ export let train = ({ brainType, prepocessor = x => x, retrain, name, options = 
     if (retrain && fs.existsSync(neuroNetPath)) {
       console.log({message: 'Backingup current neuronet.'})
       fs.renameSync(neuroNetPath, `${neuroNetPath}_${Math.round(+new Date / 1e3)}.bck`)
+      fs.writeFileSync(neuroNetPath, JSON.stringify(neuronet))
     } else if (!retrain) {
       fs.writeFileSync(neuroNetPath, JSON.stringify(neuronet))
     }
