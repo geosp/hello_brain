@@ -11,9 +11,9 @@ export let restaurants = () => {
       options: { hiddenLayers: [3] },
     })
   )
-  let restaurantsInput = { Friday: 1 }
+  let restaurantsInput = { Monday: 1 }
   console.log({
     restaurantsInput,
-    restaurantsOutput: neuroRestaurants.run(restaurantsInput),
+    restaurantsOutput: brain.likely(restaurantsInput, neuroRestaurants),
   })
 }
