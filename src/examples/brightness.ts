@@ -9,8 +9,8 @@ export let brightness = () => {
       input: data.brightnesses[idx],
       output: color,
     }))
-  let denormalizer = value => Math.floor(256 * value)
-  let denormalize = color => _.map(_.keys(color), k => denormalizer(color[k]))
+  let denormalize = color =>
+    _.map(_.keys(color), k => Math.floor(256 * color[k]))
   let neuroBrightness = new brain.NeuralNetwork()
   neuroBrightness.fromJSON(
     train({
