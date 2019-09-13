@@ -22,7 +22,7 @@ export let brightness = () => {
     })
   )
   // Generating colors based on brightness prefferences.
-  let brightnessInput = { light: 0.45, neutral: 0.35 }
+  let brightnessInput = { light: 0.65, neutral: 0.35 }
   let colorOutput = denormalize(neuroBrightness.run(brightnessInput))
   console.log(
     //@ts-ignore
