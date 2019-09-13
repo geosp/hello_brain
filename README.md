@@ -14,7 +14,7 @@ The examples implemented currently are:
 * brightness
 * xor
 * restaurants
-* addition
+* simplemath
 * readNumber
 * book
 * sentiment

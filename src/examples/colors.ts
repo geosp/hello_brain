@@ -16,6 +16,7 @@ export let colors = () => {
       retrain: false,
       options: { hiddenLayers: [3] },
       prepocessor,
+      trainingSets: ['first']
     })
   )
   let colorInput = {

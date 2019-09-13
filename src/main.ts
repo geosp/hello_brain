@@ -4,7 +4,7 @@ import { colors } from './examples/colors'
 import { restaurants } from './examples/restaurants'
 import { count } from './examples/count'
 import { market } from './examples/market'
-import { addition } from './examples/addition'
+import { simpleMath } from './examples/simpleMath'
 import { readNumber } from './examples/readNumber'
 import { book } from './examples/book'
 import { sentiment } from './examples/sentiment'
@@ -18,7 +18,7 @@ const examples = {
   restaurants,
   count,
   market,
-  addition,
+  simpleMath,
   readNumber,
   book,
   sentiment

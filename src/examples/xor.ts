@@ -10,11 +10,13 @@ export let xor = () => {
       name: 'xor',
       retrain: false,
       options: { hiddenLayers: [3] },
+      trainingSets: ['first']
     })
   )
   let xorRun = _.flow(
     x => neuroXor.run(x),
-    _.head
+    _.head,
+    Math.round
   )
   let xorInput = [0, 1]
   console.log({ xorInput, xorOutput: xorRun(xorInput) })

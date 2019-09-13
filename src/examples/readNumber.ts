@@ -148,6 +148,7 @@ export let readNumber = () => {
       '# ##  #'
   )
   let numbers = { zero, one, two, three, four, five, six, seven, eight, nine }
+  let almostNumbers = { almostSix, almostSeven, almostEight, almostNine }
   let data = _.flow(
     _.keys,
     _.map(key => ({ input: numbers[key], output: { [key]: 1 } }))
@@ -158,24 +159,18 @@ export let readNumber = () => {
     train({
       brainType: brain.NeuralNetwork,
       name: 'readNumber',
-      retrain: true,
+      retrain: false,
       options: {
         // Input size 49 and output size 9 so a good number is (inputSize - OutputSize) / 2 for the first layer.
         // Adding more nodes or an additional layer over fits our neural network so this seems to be the sweet spot.
         hiddenLayers: [20],
       },
       prepocessor: () => data,
+      trainingSets: ['empty']
     })
   )
 
-  let testData = [..._.values(numbers), almostSix, almostSeven, almostEight, almostNine]
-  let results = _.map(number => {
-    let label = brain.likely(number, neuro)
-    console.log({
-      input: JSON.stringify(number),
-      output: JSON.stringify(numbers[label])
-    })
-    return label
-  })(testData)
-  console.log({results})
+  let testData = [..._.values(numbers), ..._.values(almostNumbers)]
+  let results = _.map(number => brain.likely(number, neuro))(testData)
+  console.log({input: `${_.keys(numbers).join()},${_.keys(almostNumbers)}`, output: results.join()})
 }

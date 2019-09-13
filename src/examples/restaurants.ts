@@ -9,6 +9,7 @@ export let restaurants = () => {
       name: 'restaurants',
       retrain: false,
       options: { hiddenLayers: [3] },
+      trainingSets: ['first']
     })
   )
   let restaurantsInput = { Monday: 1 }

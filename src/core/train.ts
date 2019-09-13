@@ -1,6 +1,8 @@
 import brain, { INeuralNetworkJSON } from 'brain.js'
 import fs from 'fs'
+import _ from 'lodash/fp'
 
+const recall = path => JSON.parse(fs.readFileSync(path, 'utf8'))
 export let train = ({
   brainType,
   prepocessor = x => x,
@@ -8,36 +10,46 @@ export let train = ({
   name,
   options = {},
   trainingOptions = {},
+  trainingSets,
 }) => {
-  let neuronet: INeuralNetworkJSON
-  let neuroNetPath = `data/neuronet/${name}.json`
-  let trainingPath = `data/training/${name}.json`
+  let neuronet: INeuralNetworkJSON | any
+  let neuroNetRootPath = `data/neuronet/${name}`
+  let neuroNetPath = `${neuroNetRootPath}/${name}.json`
   if (retrain || !fs.existsSync(neuroNetPath)) {
-    let trainingData = prepocessor(
-      JSON.parse(fs.readFileSync(trainingPath, 'utf8'))
+    let trainingData = _.reduce(
+      // @ts-ignore
+      (data, setName) => [
+        ...data,
+        ...prepocessor(
+          JSON.parse(
+            fs.readFileSync(`data/training/${name}/${setName}.json`, 'utf8')
+          )
+        ),
+      ],
+      [],
+      trainingSets
     )
     let neuro = new brainType(options)
     console.log({
-      message: 'Training...',
+      message: `Training on set: ${trainingSets.join()}`,
       data: JSON.stringify(trainingData),
       trainingOptions,
     })
     let stats = neuro.train(trainingData, { ...trainingOptions })
     console.log({ stats })
     neuronet = neuro.toJSON()
-    if (retrain && fs.existsSync(neuroNetPath)) {
-      console.log({ message: 'Backingup current neuronet.' })
+    if (fs.existsSync(neuroNetPath)) {
+      console.log({ message: 'Backingup last neuronet.' })
       fs.renameSync(
         neuroNetPath,
-        `${neuroNetPath}_${Math.round(+new Date() / 1e3)}.bck`
+        `${neuroNetRootPath}/${Math.round(+new Date() / 1e3)}.bck`
       )
-      fs.writeFileSync(neuroNetPath, JSON.stringify(neuronet))
-    } else if (!retrain) {
-      fs.writeFileSync(neuroNetPath, JSON.stringify(neuronet))
     }
-  } else {
+    fs.writeFileSync(neuroNetPath, JSON.stringify(neuronet))
+  } else if (fs.existsSync(neuroNetPath)) {
     console.log({ message: 'Trained' })
-    neuronet = JSON.parse(fs.readFileSync(neuroNetPath, 'utf8'))
+    neuronet = recall(neuroNetPath)
   }
-  return neuronet
+  if (!neuronet) throw Error('Missing training sets or trained network.')
+  else return neuronet
 }

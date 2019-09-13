@@ -9,6 +9,7 @@ export let sentiment = () => {
         name: 'sentiment',
         retrain: false,
         trainingOptions: { iterations: 1000, errorThresh: 0.011 },
+        trainingSets: ['first']
       })
     )
     let sentimentInput = "I am unhappy!"

@@ -1,12 +1,12 @@
 import _ from 'lodash/fp'
 import brain from 'brain.js'
-import { train } from '../core/train'
-import marketData from '../../data/training/market.json'
+import { train } from '../../core/train'
+import marketData from '../../../data/training/market/first.json'
 import {
   getExtremes,
   normalizeMarketData,
   denormalizeMarketData,
-} from '../util/market'
+} from './util'
 
 export let market = () => {
   const marketDataPreprocessor = data =>
@@ -30,6 +30,7 @@ export let market = () => {
       options: { hiddenLayers: [8, 8], inputSize: 4, outputSize: 4 },
       trainingOptions: { learningRate: 0.005, errorThresh: 0.02 },
       prepocessor: marketDataPreprocessor,
+      trainingSets: ['first']
     })
   )
   let marketInput = [trainingData[0][0]]

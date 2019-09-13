@@ -19,6 +19,7 @@ export let brightness = () => {
       retrain: false,
       options: { hiddenLayers: [3] },
       prepocessor,
+      trainingSets: ['first']
     })
   )
   // Generating colors based on brightness prefferences.
