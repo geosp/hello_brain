@@ -4,7 +4,7 @@ import _ from 'lodash'
 import chalk from 'chalk'
 
 export let brightness = () => {
-  let prepocessor = data =>
+  let preprocessor = data =>
     _.map(data.colors, (color, idx) => ({
       input: data.brightnesses[idx],
       output: color,
@@ -18,7 +18,7 @@ export let brightness = () => {
       name: 'brightness',
       retrain: false,
       options: { hiddenLayers: [3] },
-      prepocessor,
+      preprocessor,
       trainingSets: ['first']
     })
   )

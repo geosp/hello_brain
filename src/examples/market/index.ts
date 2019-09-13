@@ -29,7 +29,7 @@ export let market = () => {
       retrain: false,
       options: { hiddenLayers: [8, 8], inputSize: 4, outputSize: 4 },
       trainingOptions: { learningRate: 0.005, errorThresh: 0.02 },
-      prepocessor: marketDataPreprocessor,
+      preprocessor: marketDataPreprocessor,
       trainingSets: ['first']
     })
   )

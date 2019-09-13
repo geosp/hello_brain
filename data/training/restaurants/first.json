@@ -1,12 +1,9 @@
-[
-  { "input": { "Monday": 1 }, "output": { "Brilliant Yellow Corral": 1 } },
-  { "input": { "Tuesday": 1 }, "output": { "Penny’s": 1 } },
-  { "input": { "Wednesday": 1 }, "output": { "Right Coast Wings": 1 } },
-  {
-    "input": { "Thursday": 1 },
-    "output": { "The Delusion Last Railway Car": 1 }
-  },
-  { "input": { "Friday": 1 }, "output": { "Fun Day Inn": 1 } },
-  { "input": { "Sunday": 1 }, "output": { "Owls": 1 } },
-  { "input": { "Saturday": 1 }, "output": { "JHOP": 1 } }
-]
+{
+    "Brilliant Yellow Corral": "Monday",
+    "Penny’s": "Tuesday",
+    "Right Coast Wings": "Wednesday",
+    "The Delusion Last Railway Car": "Thursday",
+    "Fun Day Inn": "Friday",
+    "JHOP": "Saturday",
+    "Owls": "Sunday"
+}

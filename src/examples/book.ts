@@ -9,6 +9,7 @@ export let book = () => {
         name: 'book',
         retrain: false,
         trainingOptions: { iterations: 1500, errorThresh: 0.011 },
+        trainingSets: ['first']
       })
     )
     let bookInput = 'Jane saw seat'

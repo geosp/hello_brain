@@ -165,7 +165,7 @@ export let readNumber = () => {
         // Adding more nodes or an additional layer over fits our neural network so this seems to be the sweet spot.
         hiddenLayers: [20],
       },
-      prepocessor: () => data,
+      preprocessor: () => data,
       trainingSets: ['empty']
     })
   )

@@ -3,7 +3,7 @@ import { train } from '../core/train'
 import _ from 'lodash'
 
 export let colors = () => {
-  let prepocessor = data =>
+  let preprocessor = data =>
     _.map(data.colors, (color, idx) => ({
       input: color,
       output: data.brightnesses[idx],
@@ -15,7 +15,7 @@ export let colors = () => {
       name: 'colors',
       retrain: false,
       options: { hiddenLayers: [3] },
-      prepocessor,
+      preprocessor,
       trainingSets: ['first']
     })
   )

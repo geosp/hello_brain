@@ -5,7 +5,7 @@ import _ from 'lodash/fp'
 const recall = path => JSON.parse(fs.readFileSync(path, 'utf8'))
 export let train = ({
   brainType,
-  prepocessor = x => x,
+  preprocessor = x => x,
   retrain,
   name,
   options = {},
@@ -20,7 +20,7 @@ export let train = ({
       // @ts-ignore
       (data, setName) => [
         ...data,
-        ...prepocessor(
+        ...preprocessor(
           JSON.parse(
             fs.readFileSync(`data/training/${name}/${setName}.json`, 'utf8')
           )
