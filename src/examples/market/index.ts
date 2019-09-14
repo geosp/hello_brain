@@ -3,7 +3,7 @@ import brain from 'brain.js'
 import { train } from '../../core/train'
 import marketData from '../../../data/training/market/first.json'
 import {
-  getExtremes,
+  getDayExtremes,
   normalizeMarketData,
   denormalizeMarketData,
 } from './util'
@@ -11,13 +11,13 @@ import {
 export let market = () => {
   const marketDataPreprocessor = data =>
     _.flow(
-      getExtremes,
+      getDayExtremes,
       normalizeMarketData(data),
       _.chunk(5)
     )(data)
   const denormailizeData = data => 
     _.flow(
-      getExtremes,
+      getDayExtremes,
       denormalizeMarketData(data)
     )(marketData)
   const trainingData = marketDataPreprocessor(marketData)
