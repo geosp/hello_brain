@@ -7,7 +7,16 @@ export let getExtremes = _.flow(
   _.sortBy(_.identity),
   x => ({ lowest: _.head(x), highest: _.last(x) })
 )
-
+/**
+ * Rounds value to the nearest precission.
+ *
+ * @param value     Any number.
+ * @param precision The number of desired decimal places in the result.
+ */
+export let round = _.curry((precision: number, value: number) => {
+  let multiplier = Math.pow(10, precision || 0)
+  return Math.round(value * multiplier) / multiplier
+})
 /**
  * Scales a value to a number between 0 and 1.
  *
@@ -26,3 +35,15 @@ export let normalize = ({ lowest, highest, value }) =>
  */
 export let denormalize = ({ lowest, highest, value }) =>
   value * (highest - lowest) + lowest
+/**
+ * Denormaize to a given precission
+ *
+ * @param data      Normalized value with range.
+ * @param precision The number of desired decimal places in the result.
+ */
+export let denormalizeAndRound = _.curry((precision: number, data) =>
+  _.flow(
+    denormalize,
+    round(precision)
+  )(data)
+)
