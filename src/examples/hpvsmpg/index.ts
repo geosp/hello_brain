@@ -2,7 +2,7 @@ import brain from 'brain.js'
 import { train } from '../../core/train'
 import _ from 'lodash/fp'
 import { range } from 'lodash'
-import { plot, Plot } from 'nodeplotlib'
+import { plot } from 'nodeplotlib'
 import {
   preprocessor,
   normalizeHp,
