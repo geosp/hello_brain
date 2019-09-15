@@ -1,1 +1,37 @@
-{"sizes":[1,1,1],"layers":[{"hp":{}},{"0":{"bias":1.1164259910583496,"weights":{"hp":-6.111172676086426}}},{"mpg":{"bias":-1.9523463249206543,"weights":{"0":4.069828987121582}}}],"outputLookup":true,"inputLookup":true,"activation":"sigmoid","trainOpts":{"iterations":20000,"errorThresh":0.005,"log":false,"logPeriod":10,"learningRate":0.3,"momentum":0.1,"callbackPeriod":10,"beta1":0.9,"beta2":0.999,"epsilon":1e-8}}
+{
+  "sizes": [1, 2, 1],
+  "layers": [
+    { "hp": {} },
+    {
+      "0": {
+        "bias": -3.3933463096618652,
+        "weights": { "hp": 18.644855499267578 }
+      },
+      "1": {
+        "bias": -8.518214225769043,
+        "weights": { "hp": 16.18253517150879 }
+      }
+    },
+    {
+      "mpg": {
+        "bias": 0.8139351606369019,
+        "weights": { "0": -1.7005468606948853, "1": -1.2739299535751343 }
+      }
+    }
+  ],
+  "outputLookup": true,
+  "inputLookup": true,
+  "activation": "sigmoid",
+  "trainOpts": {
+    "iterations": 40000,
+    "errorThresh": 0.005,
+    "log": false,
+    "logPeriod": 10,
+    "learningRate": 0.3,
+    "momentum": 0.1,
+    "callbackPeriod": 10,
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "epsilon": 1e-8
+  }
+}

@@ -11,8 +11,9 @@ export let hpvsmpg = () => {
     train({
       brainType: brain.NeuralNetwork,
       name: 'hpvsmpg',
-      retrain: false,
-      options: { hiddenLayers: [1] },
+      retrain: true,
+      options: { hiddenLayers: [2] },
+      trainingOptions: { iterations: 40000},
       trainingSets: ['empty'],
       preprocessor,
     })
