@@ -18,6 +18,7 @@ The examples implemented currently are:
 * readNumber
 * book
 * sentiment
+* hpvsmpg
 
 The training data is in the `data/training` folder. The resulting network is stored in the `data/neuronet` folder.
 The train function in the examples persist the network state. If you make changes to the training data or the options

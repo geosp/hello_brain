@@ -1,0 +1,37 @@
+{
+  "sizes": [1, 2, 1],
+  "layers": [
+    { "hp": {} },
+    {
+      "0": {
+        "bias": -3.149108409881592,
+        "weights": { "hp": 18.46162223815918 }
+      },
+      "1": {
+        "bias": 4.2360053062438965,
+        "weights": { "hp": -8.337423324584961 }
+      }
+    },
+    {
+      "mpg": {
+        "bias": -0.7485061883926392,
+        "weights": { "0": -1.4781711101531982, "1": 1.7688275575637817 }
+      }
+    }
+  ],
+  "outputLookup": true,
+  "inputLookup": true,
+  "activation": "sigmoid",
+  "trainOpts": {
+    "iterations": 20000,
+    "errorThresh": 0.005,
+    "log": false,
+    "logPeriod": 10,
+    "learningRate": 0.3,
+    "momentum": 0.1,
+    "callbackPeriod": 10,
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "epsilon": 1e-8
+  }
+}

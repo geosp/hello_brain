@@ -8,6 +8,7 @@ import { simpleMath } from './examples/simpleMath'
 import { readNumber } from './examples/readNumber'
 import { book } from './examples/book'
 import { sentiment } from './examples/sentiment'
+import { hpvsmpg } from './examples/hpvsmpg'
 
 const params = process.argv.slice(2)
 
@@ -21,6 +22,7 @@ const examples = {
   simpleMath,
   readNumber,
   book,
-  sentiment
+  sentiment,
+  hpvsmpg
 }
 examples[params[0]]()
