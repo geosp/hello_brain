@@ -5,7 +5,7 @@ import _ from 'lodash/fp'
  */
 export let getExtremes = _.flow(
   _.sortBy(_.identity),
-  x => ({ lowest: _.head(x), highest: _.last(x) })
+  x => ({ lowest: _.head(x) as number, highest: _.last(x) as number })
 )
 /**
  * Rounds value to the nearest precission.
