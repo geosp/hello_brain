@@ -7,7 +7,7 @@ import {
 } from '../../core/normalization'
 import carData from '../../../data/training/cars/data.json'
 
-export let rawData = _.flow(
+export let rawData: { hp: number; mpg: number }[] = _.flow(
   _.map(({ Horsepower, Miles_per_Gallon }) => ({
     mpg: Miles_per_Gallon,
     hp: Horsepower,
@@ -23,20 +23,25 @@ export let hpExtreems = _.flow(
   _.map(({ hp }) => hp),
   getExtremes
 )(rawData)
-export let normalizeHp = value => ({ hp: normalize({ ...hpExtreems, value }) })
-export let normalizeMpg = value => ({
+export let normalizeHp = (value: number) => ({
+  hp: normalize({ ...hpExtreems, value }),
+})
+export let normalizeMpg = (value: number) => ({
   mpg: normalize({ ...mpgExtreems, value }),
 })
-export let trainingData = _.flow(
+export let trainingData: {
+  input: { hp: number }
+  output: { mpg: number }
+}[] = _.flow(
   _.map(({ mpg, hp }) => ({
     input: normalizeHp(hp),
     output: normalizeMpg(mpg),
   }))
 )(rawData)
 export let preprocessor = () => trainingData
-export let denormalizeMpg = ({ mpg }) => ({
+export let denormalizeMpg = ({ mpg }: { mpg: number }) => ({
   mpg: round(0, denormalize({ ...mpgExtreems, value: mpg })),
 })
-export let denormalizeHp = ({ hp }) => ({
+export let denormalizeHp = ({ hp }: { hp: number }) => ({
   hp: round(0, denormalize({ ...hpExtreems, value: hp })),
 })

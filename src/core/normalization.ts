@@ -24,8 +24,15 @@ export let round = _.curry((precision: number, value: number) => {
  * @param lowest  The lowest instance of value in a dataset.
  * @param highest The highest instance of value in a dataset.
  */
-export let normalize = ({ lowest, highest, value }) =>
-  (value - lowest) / (highest - lowest)
+export let normalize = ({
+  lowest,
+  highest,
+  value,
+}: {
+  lowest: number
+  highest: number
+  value: number
+}) => (value - lowest) / (highest - lowest)
 /**
  * Computes the original scalled value.
  *
@@ -33,17 +40,28 @@ export let normalize = ({ lowest, highest, value }) =>
  * @param lowest    The lowest instance of value in a dataset.
  * @param highest   The highest instance of value in a dataset.
  */
-export let denormalize = ({ lowest, highest, value }) =>
-  value * (highest - lowest) + lowest
+export let denormalize = ({
+  lowest,
+  highest,
+  value,
+}: {
+  lowest: number
+  highest: number
+  value: number
+}) => value * (highest - lowest) + lowest
 /**
  * Denormaize to a given precission
  *
  * @param data      Normalized value with range.
  * @param precision The number of desired decimal places in the result.
  */
-export let denormalizeAndRound = _.curry((precision: number, data) =>
-  _.flow(
-    denormalize,
-    round(precision)
-  )(data)
+export let denormalizeAndRound = _.curry(
+  (
+    precision: number,
+    data: { lowest: number, highest: number, value: number }
+  ) =>
+    _.flow(
+      denormalize,
+      round(precision)
+    )(data)
 )
