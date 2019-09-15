@@ -12,8 +12,8 @@ import {
 } from './util'
 
 export let hpvsmpg = () => {
-  let neuroHpVsMPG = new brain.NeuralNetwork()
-  neuroHpVsMPG.fromJSON(
+  let model = new brain.NeuralNetwork()
+  model.fromJSON(
     train({
       brainType: brain.NeuralNetwork,
       name: 'hpvsmpg',
@@ -27,7 +27,7 @@ export let hpvsmpg = () => {
   let x0 = _.map(x => x.hp as number, rawData)
   let y0 = _.map(y => y.mpg as number, rawData)
   let x = range(hpExtreems.lowest, hpExtreems.highest, 10)
-  let y = _.map(hp => denormalizeMpg(neuroHpVsMPG.run(normalizeHp(hp))).mpg, x)
+  let y = _.map(hp => denormalizeMpg(model.run(normalizeHp(hp))).mpg, x)
 
   plot(
     [
