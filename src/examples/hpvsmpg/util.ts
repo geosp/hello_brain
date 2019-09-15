@@ -15,7 +15,6 @@ export let rawData = _.flow(
   _.remove(({ mpg, hp }) => _.isNull(mpg) || _.isNull(hp)),
   _.shuffle
 )(carData)
-
 export let mpgExtreems = _.flow(
   _.map(({ mpg }) => mpg),
   getExtremes

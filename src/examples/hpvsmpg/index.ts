@@ -29,17 +29,17 @@ export let hpvsmpg = () => {
   let x = range(hpExtreems.lowest, hpExtreems.highest, 10)
   let y = _.map(hp => denormalizeMpg(neuroHpVsMPG.run(normalizeHp(hp))).mpg, x)
 
-  // @ts-ignore
+  
   plot(
     [
       {
         x: x0,
         y: y0,
         type: 'scatter',
-        name: 'input',
+        name: 'raw',
         mode: 'markers'
       },
-      { x, y, name: 'output' },
+      { x, y, name: 'prediction' },
     ],
     {
       title: 'HP vs MPG Correlation',
