@@ -3,9 +3,12 @@ import _ from 'lodash/fp'
 /**
  * Gets the lowest and highest in a array of numbers.
  */
-export let getExtremes = _.flow(
+// @ts-ignore
+export let getExtremes: (
+  data: number[]
+) => { lowest: number; highest: number } = _.flow(
   _.sortBy(_.identity),
-  x => ({ lowest: _.head(x) as number, highest: _.last(x) as number })
+  x => ({ lowest: _.head(x), highest: _.last(x) })
 )
 /**
  * Rounds value to the nearest precission.
