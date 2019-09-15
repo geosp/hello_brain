@@ -29,7 +29,6 @@ export let hpvsmpg = () => {
   let x = range(hpExtreems.lowest, hpExtreems.highest, 10)
   let y = _.map(hp => denormalizeMpg(neuroHpVsMPG.run(normalizeHp(hp))).mpg, x)
 
-  
   plot(
     [
       {
