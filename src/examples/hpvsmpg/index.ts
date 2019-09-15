@@ -41,7 +41,7 @@ export let hpvsmpg = () => {
       { x, y, name: 'prediction' },
     ],
     {
-      title: 'HP vs MPG Correlation',
+      title: 'HP vs. MPG Correlation',
       xaxis: { title: 'HP' },
       yaxis: { title: 'MPG' },
     }
