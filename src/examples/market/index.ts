@@ -22,9 +22,6 @@ export let market = () => {
       trainingSets: ['first']
     })
   )
-  let marketInput = [trainingData[0][0]]
-  let marketOutput = neuroMarket.run(marketInput)
-  console.log({ marketInput: denormailizeData(marketInput), marketOutput: denormailizeData([marketOutput]) })
   let marketForcastInput = _.last(trainingData)
   let marketForcastOutput = neuroMarket.forecast(marketForcastInput, 5)
   console.log({ marketForcastInput: denormailizeData(marketForcastInput), marketForcastOutput: denormailizeData(marketForcastOutput) })
