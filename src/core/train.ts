@@ -63,14 +63,8 @@ export let train = ({
   if (!neuronet) throw Error('Missing training sets or trained network.')
   else return neuronet
 }
-export let parseLog: (log: string) => { x: number; y: number } = _.flow(
-  _.split(','),
-  _.map(x => x.split(':')),
-  x => ({ x: parseNumber(x[0][1]), y: parseNumber(x[1][1]) * 100 })
-)
-export let errorLogger = (info: string /*, {error}: {iterations : number, error : number}*/) => {
-  let errorInfo = parseLog(info)
-  trainingErrors.push(errorInfo.y)
+export let errorLogger = ({iterations, error}) => {
+  trainingErrors.push(error)
 }
 export let getErrorPlot = () => ({
   plot: [{ x: _.range(1, trainingErrors.length), y: trainingErrors }],

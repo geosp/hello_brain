@@ -17,15 +17,15 @@ export let hpvsmpg = () => {
     train({
       brainType: brain.NeuralNetwork,
       name: 'hpvsmpg',
-      retrain: true,
+      retrain: false,
       svg: true,
       svgOptions: { width: 500, height: 600},
       options: { hiddenLayers: [2], activation: 'sigmoid' },
       trainingOptions: {
         errorThresh: 0.0138,
         // iterations: 50,
-        logPeriod: 1,
-        log: errorLogger,
+        callbackPeriod: 1,
+        callback: errorLogger,
       },
       trainingSets: ['empty'],
       preprocessor,
