@@ -32,7 +32,12 @@ export let hpvsmpg = () => {
   let x0 = _.map(x => x.hp, rawData)
   let y0 = _.map(y => y.mpg, rawData)
   let x = range(hpExtreems.lowest, hpExtreems.highest, 10)
-  let y = _.map(hp => denormalizeMpg(model.run(normalizeHp(hp))).mpg, x)
+  let y = _.flow(
+    _.map(normalizeHp),
+    _.map(hp => model.run(hp)),
+    _.map(denormalizeMpg),
+    _.map(_.get('mpg'))
+  )(x)
   stack(
     [
       {
