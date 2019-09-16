@@ -6,7 +6,7 @@ import _ from 'lodash/fp'
 // @ts-ignore
 export let getExtremes: (
   data: number[]
-) => { lowest: number; highest: number } = _.flow(
+) => { lowest: number, highest: number } = _.flow(
   _.sortBy(_.identity),
   x => ({ lowest: _.head(x), highest: _.last(x) })
 )
