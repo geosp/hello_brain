@@ -29,7 +29,9 @@ export let hpvsmpg = () => {
       preprocessor,
     })
   )
+  // Training data domain.
   let x0 = _.map(x => x.hp, rawData)
+  // Training data range.
   let y0 = _.map(y => y.mpg, rawData)
   // Domain of possible input values.
   let x1 = range(hpExtreems.lowest, hpExtreems.highest, 10)
