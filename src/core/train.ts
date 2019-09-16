@@ -34,6 +34,32 @@ export let train = ({
       [],
       trainingSets
     )
+    // Alternative using streams but the output formats look different for some reason.
+    // let trainingStream = new brain.TrainStream({
+    //   neuralNetwork: neuro,
+    //   floodCallback: () => {
+    //     readTrainingSets()
+    //   },
+    //   doneTrainingCallback: state => {
+    //     console.log({state: neuro.run([0,0])})
+    //   },
+    //   ...trainingOptions
+    // })
+    // let readTrainingSets = () => {
+    //   for (let setName of trainingSets) {
+    //     let setPath = `data/training/${name}/${setName}.json`
+    //     let data = preprocessor(
+    //       JSON.parse(
+    //         fs.readFileSync(`data/training/${name}/${setName}.json`, 'utf8')
+    //       )
+    //     )
+    //     for (let item of data) {
+    //       trainingStream.write(item)
+    //     }
+    //   }
+    //   trainingStream.endInputs()
+    // }
+    // readTrainingSets()
     let neuro = new brainType(options)
     console.log({
       message: `Training on set: ${trainingSets.join()}`,

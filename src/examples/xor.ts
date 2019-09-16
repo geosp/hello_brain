@@ -8,16 +8,11 @@ export let xor = () => {
     train({
       brainType: brain.NeuralNetwork,
       name: 'xor',
-      retrain: false,
+      retrain: true,
       options: { hiddenLayers: [3] },
       trainingSets: ['first']
     })
   )
-  let xorRun = _.flow(
-    x => neuroXor.run(x),
-    _.head,
-    Math.round
-  )
-  let xorInput = [0, 1]
-  console.log({ xorInput, xorOutput: xorRun(xorInput) })
+  let xorInput = [1, 1]
+  console.log({ xorInput, xorOutput: Math.round(neuroXor.run(xorInput)[0]) })
 }
