@@ -4,6 +4,7 @@ import {
   normalize,
   denormalizeAndRound,
 } from '../../core/normalization'
+import marketData from '../../../data/training/market/first.json'
 
 const processData = ({ data, extremes, fn }) =>
   _.map(
@@ -15,16 +16,28 @@ const processData = ({ data, extremes, fn }) =>
     }),
     data
   )
-export let getDayExtremes = _.flow(
+let getDayExtremes = _.flow(
   // @ts-ignore
   _.reduce((acc, { open, high, low, close }) => {
     return [...acc, open, high, low, close]
   }, []),
   getExtremes
 )
-export let normalizeMarketData = _.curry((data, extremes) =>
+let normalizeMarketData = _.curry((data, extremes) =>
   processData({ data, extremes, fn: normalize })
 )
-export let denormalizeMarketData = _.curry((data, extremes) =>
+let denormalizeMarketData = _.curry((data, extremes) =>
   processData({ data, extremes, fn: denormalizeAndRound(4) })
 )
+export let marketDataPreprocessor = data =>
+  _.flow(
+    getDayExtremes,
+    normalizeMarketData(data),
+    _.chunk(5)
+  )(data)
+export let denormailizeData = data =>
+  _.flow(
+    getDayExtremes,
+    denormalizeMarketData(data)
+  )(marketData)
+export let trainingData = marketDataPreprocessor(marketData)

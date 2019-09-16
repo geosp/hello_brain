@@ -1,32 +1,19 @@
 import _ from 'lodash/fp'
 import brain from 'brain.js'
 import { train } from '../../core/train'
-import marketData from '../../../data/training/market/first.json'
 import {
-  getDayExtremes,
-  normalizeMarketData,
-  denormalizeMarketData,
+  trainingData,
+  marketDataPreprocessor,
+  denormailizeData
 } from './util'
 
 export let market = () => {
-  const marketDataPreprocessor = data =>
-    _.flow(
-      getDayExtremes,
-      normalizeMarketData(data),
-      _.chunk(5)
-    )(data)
-  const denormailizeData = data => 
-    _.flow(
-      getDayExtremes,
-      denormalizeMarketData(data),
-    )(marketData)
-  const trainingData = marketDataPreprocessor(marketData)
   let neuroMarket = new brain.recurrent.LSTMTimeStep()
   neuroMarket.fromJSON(
     train({
       brainType: brain.recurrent.LSTMTimeStep,
       name: 'market',
-      retrain: true,
+      retrain: false,
       svg: true,
       svgOptions: { width: 1000, height: 1250},
       options: { hiddenLayers: [8, 8], inputSize: 4, outputSize: 4 },

@@ -52,7 +52,7 @@ export let train = ({
     }
     fs.writeFileSync(neuroNetPath, JSON.stringify(neuronet))
     if (svg) {
-      // Waiting for fix to issue witht oSVG.
+      // Waiting for fix to issue witht toSVG.
       //@ts-ignore
       // fs.writeFileSync(`${neuroNetRootPath}/${name}.svg`, brain.utilities.toSVG(neuro, svgOptions))
     }
