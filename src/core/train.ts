@@ -35,7 +35,7 @@ export let train = ({
     let neuro = new brainType(options)
     console.log({
       message: `Training on set: ${trainingSets.join()}`,
-      // data: JSON.stringify(trainingData),
+      data: JSON.stringify((trainingData as Number[]).slice(0, 100)),
       trainingOptions,
     })
     let stats = neuro.train(trainingData, { ...trainingOptions })
