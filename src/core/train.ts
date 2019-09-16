@@ -3,7 +3,7 @@ import fs from 'fs'
 import _ from 'lodash/fp'
 
 let parseNumber = value => Number(_.trim(value))
-export let error: number[] = []
+export let trainingErrors: number[] = []
 const recall = path => JSON.parse(fs.readFileSync(path, 'utf8'))
 export let train = ({
   brainType,
@@ -18,7 +18,7 @@ export let train = ({
   let neuroNetRootPath = `data/neuronet/${name}`
   let neuroNetPath = `${neuroNetRootPath}/${name}.json`
   if (retrain || !fs.existsSync(neuroNetPath)) {
-    error = []
+    trainingErrors = []
     let trainingData = _.reduce(
       // @ts-ignore
       (data, setName) => [
@@ -61,12 +61,12 @@ export let parseLog: (log: string) => { x: number; y: number } = _.flow(
   _.map(x => x.split(':')),
   x => ({ x: parseNumber(x[0][1]), y: parseNumber(x[1][1]) * 100 })
 )
-export let errorLogger = (info: string) => {
+export let errorLogger = (info: string /*, {error}: {iterations : number, error : number}*/) => {
   let errorInfo = parseLog(info)
-  error.push(errorInfo.y)
+  trainingErrors.push(errorInfo.y)
 }
 export let getErrorPlot = () => ({
-  plot: [{ x: _.range(1, error.length), y: error }],
+  plot: [{ x: _.range(1, trainingErrors.length), y: trainingErrors }],
   layout: {
     title: 'Iterations vs. % Error',
     xaxis: { title: 'Iterations', type: 'log' },

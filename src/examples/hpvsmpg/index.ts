@@ -1,5 +1,5 @@
 import brain from 'brain.js'
-import { train, error, errorLogger, getErrorPlot} from '../../core/train'
+import { train, trainingErrors, errorLogger, getErrorPlot} from '../../core/train'
 import _ from 'lodash/fp'
 import { range } from 'lodash'
 import { plot, stack } from 'nodeplotlib'
@@ -59,7 +59,7 @@ export let hpvsmpg = () => {
       yaxis: { title: 'MPG' },
     }
   )
-  if (error.length > 0) {
+  if (trainingErrors.length > 0) {
     let errorPlot = getErrorPlot()
     // @ts-ignore
     stack(errorPlot.plot, errorPlot.layout)
