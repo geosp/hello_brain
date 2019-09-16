@@ -17,7 +17,9 @@ export let hpvsmpg = () => {
     train({
       brainType: brain.NeuralNetwork,
       name: 'hpvsmpg',
-      retrain: false,
+      retrain: true,
+      svg: true,
+      svgOptions: { width: 500, height: 600},
       options: { hiddenLayers: [2], activation: 'sigmoid' },
       trainingOptions: {
         errorThresh: 0.0138,

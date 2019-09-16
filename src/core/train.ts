@@ -13,6 +13,8 @@ export let train = ({
   options = {},
   trainingOptions = {},
   trainingSets,
+  svg = false,
+  svgOptions = {}
 }) => {
   let neuronet: INeuralNetworkJSON | any
   let neuroNetRootPath = `data/neuronet/${name}`
@@ -49,6 +51,11 @@ export let train = ({
       )
     }
     fs.writeFileSync(neuroNetPath, JSON.stringify(neuronet))
+    if (svg) {
+      // Waiting for fix to issue witht oSVG.
+      //@ts-ignore
+      // fs.writeFileSync(`${neuroNetRootPath}/${name}.svg`, brain.utilities.toSVG(neuro, svgOptions))
+    }
   } else if (fs.existsSync(neuroNetPath)) {
     console.log({ message: 'Trained' })
     neuronet = recall(neuroNetPath)
