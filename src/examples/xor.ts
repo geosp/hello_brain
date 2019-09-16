@@ -8,7 +8,7 @@ export let xor = () => {
     train({
       brainType: brain.NeuralNetwork,
       name: 'xor',
-      retrain: true,
+      retrain: false,
       options: { hiddenLayers: [3] },
       trainingSets: ['first']
     })
