@@ -31,13 +31,15 @@ export let hpvsmpg = () => {
   )
   let x0 = _.map(x => x.hp, rawData)
   let y0 = _.map(y => y.mpg, rawData)
-  let x = range(hpExtreems.lowest, hpExtreems.highest, 10)
-  let y = _.flow(
+  // Domain of possible input values.
+  let x1 = range(hpExtreems.lowest, hpExtreems.highest, 10)
+  // Range of predictions based on our model.
+  let y1 = _.flow(
     _.map(normalizeHp),
     _.map(hp => model.run(hp)),
     _.map(denormalizeMpg),
     _.map(_.get('mpg'))
-  )(x)
+  )(x1)
   stack(
     [
       {
@@ -47,7 +49,7 @@ export let hpvsmpg = () => {
         name: 'raw',
         mode: 'markers',
       },
-      { x, y, name: 'prediction' },
+      { x: x1, y: y1, name: 'prediction' },
     ],
     {
       title: 'HP vs. Fuel Economy',
