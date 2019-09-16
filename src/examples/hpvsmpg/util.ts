@@ -1,9 +1,8 @@
 import _ from 'lodash/fp'
 import {
   normalize,
-  denormalize,
   getExtremes,
-  round,
+  denormalizeAndRound,
 } from '../../core/normalization'
 import carData from '../../../data/training/cars/data.json'
 
@@ -40,8 +39,8 @@ export let trainingData: {
 )(rawData)
 export let preprocessor = () => trainingData
 export let denormalizeMpg = ({ mpg }: { mpg: number }) => ({
-  mpg: round(0, denormalize({ ...mpgExtreems, value: mpg })),
+  mpg: denormalizeAndRound(0, { ...mpgExtreems, value: mpg }),
 })
 export let denormalizeHp = ({ hp }: { hp: number }) => ({
-  hp: round(0, denormalize({ ...hpExtreems, value: hp })),
+  hp: denormalizeAndRound(0, { ...hpExtreems, value: hp }),
 })

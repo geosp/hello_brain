@@ -8,11 +8,12 @@ import marketData from '../../../data/training/market/first.json'
 
 const processData = ({ data, extremes, fn }) =>
   _.map(
-    ({ open, high, low, close }) => ({
+    ({ date, open, high, low, close }) => ({
       open: fn({ ...extremes, value: open }),
       high: fn({ ...extremes, value: high }),
       low: fn({ ...extremes, value: low }),
       close: fn({ ...extremes, value: close }),
+      date
     }),
     data
   )
