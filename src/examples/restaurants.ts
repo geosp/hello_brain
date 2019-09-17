@@ -17,7 +17,7 @@ export let restaurants = () => {
       brainType: brain.NeuralNetwork,
       name: 'restaurants',
       retrain: false,
-      options: { hiddenLayers: [3] },
+      networkOptions: { hiddenLayers: [3] },
       trainingSets: ['first'],
       preprocessor,
     })

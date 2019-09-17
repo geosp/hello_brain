@@ -16,10 +16,10 @@ export let count = () => {
     train({
       brainType: brain.recurrent.LSTMTimeStep,
       name: 'count',
-      retrain: true,
+      retrain: false,
       svg: true,
       svgOptions: { width: 400, height: 300},
-      options: { hiddenLayers: [3] },
+      networkOptions: { hiddenLayers: [3] },
       trainingSets: ['forward', 'backward'],
       // preprocessor: data => [...data, ...extendDataSet()],
       // preprocessor: extendDataSet,

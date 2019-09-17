@@ -14,7 +14,7 @@ export let colors = () => {
       brainType: brain.NeuralNetwork,
       name: 'colors',
       retrain: false,
-      options: { hiddenLayers: [3] },
+      networkOptions: { hiddenLayers: [3] },
       preprocessor,
       trainingSets: ['first']
     })

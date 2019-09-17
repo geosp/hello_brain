@@ -10,7 +10,7 @@ export let train = ({
   preprocessor = x => x,
   retrain,
   name,
-  options = {},
+  networkOptions = {},
   trainingOptions = {},
   trainingSets,
   svg = false,
@@ -60,7 +60,7 @@ export let train = ({
     //   trainingStream.endInputs()
     // }
     // readTrainingSets()
-    let neuro = new brainType(options)
+    let neuro = new brainType(networkOptions)
     console.log({
       message: `Training on set: ${trainingSets.join()}`,
       data: JSON.stringify((trainingData as []).slice(0, 10)),

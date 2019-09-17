@@ -19,7 +19,7 @@ export let market = () => {
       retrain: false,
       svg: true,
       svgOptions: { width: 1000, height: 1250 },
-      options: { hiddenLayers: [8, 8], inputSize: 4, outputSize: 4 },
+      networkOptions: { hiddenLayers: [8, 8], inputSize: 4, outputSize: 4 },
       trainingOptions: {
         learningRate: 0.005,
         errorThresh: 0.02,

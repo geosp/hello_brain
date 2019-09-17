@@ -20,7 +20,7 @@ export let hpvsmpg = () => {
       retrain: false,
       svg: true,
       svgOptions: { width: 500, height: 600},
-      options: { hiddenLayers: [2], activation: 'sigmoid' },
+      networkOptions: { hiddenLayers: [2], activation: 'sigmoid' },
       trainingOptions: {
         errorThresh: 0.0138,
         // iterations: 50,

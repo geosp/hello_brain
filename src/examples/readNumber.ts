@@ -159,10 +159,10 @@ export let readNumber = () => {
     train({
       brainType: brain.NeuralNetwork,
       name: 'readNumber',
-      retrain: true,
+      retrain: false,
       svg: true,
       svgOptions: { width: 1200, height: 1500},
-      options: {
+      networkOptions: {
         // Input size 49 and output size 9 so a good number is (inputSize - OutputSize) / 2 for the first layer.
         // Adding more nodes or an additional layer over fits our neural network so this seems to be the sweet spot.
         hiddenLayers: [20, 10],

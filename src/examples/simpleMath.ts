@@ -8,7 +8,7 @@ export let simpleMath = () => {
       brainType: brain.recurrent.LSTM,
       name: 'simpleMath',
       retrain: false,
-      options: { hiddenLayers: [20] },
+      networkOptions: { hiddenLayers: [20] },
       trainingOptions: { errorThresh: 0.025 },
       trainingSets: ['addition']
     })

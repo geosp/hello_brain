@@ -17,7 +17,7 @@ export let brightness = () => {
       brainType: brain.NeuralNetwork,
       name: 'brightness',
       retrain: false,
-      options: { hiddenLayers: [3] },
+      networkOptions: { hiddenLayers: [3] },
       preprocessor,
       trainingSets: ['first']
     })
