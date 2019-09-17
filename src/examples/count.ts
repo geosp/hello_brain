@@ -2,7 +2,7 @@ import brain from 'brain.js'
 import { train } from '../core/train'
 import _ from 'lodash'
 
-export default (retrain = false) => {
+export default ({retrain, name}) => {
   let extendDataSet = () => {
     let a = _.tail([...Array(6).keys()])
     let b = _.clone(a).reverse()
@@ -24,7 +24,7 @@ export default (retrain = false) => {
       brainType: brain.recurrent.LSTMTimeStep,
       networkOptions,
       // trainingOptions,
-      name: 'count',
+      name,
       retrain,
       svg: true,
       svgOptions: { width: 400, height: 300},

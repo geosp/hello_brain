@@ -10,7 +10,7 @@ import {
 } from '../../core/train'
 import { trainingData, marketDataPreprocessor, denormailizeData } from './util'
 
-export default (retrain = false) => {
+export default ({retrain, name}) => {
   let neuroMarket = new brain.recurrent.LSTMTimeStep()
   let networkOptions = {
     hiddenLayers: [8, 8],
@@ -29,7 +29,7 @@ export default (retrain = false) => {
       brainType: brain.recurrent.LSTMTimeStep,
       networkOptions,
       trainingOptions,
-      name: 'market',
+      name,
       retrain,
       svg: true,
       svgOptions: { width: 1000, height: 1250 },

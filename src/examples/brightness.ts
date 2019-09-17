@@ -3,7 +3,7 @@ import { train } from '../core/train'
 import _ from 'lodash'
 import chalk from 'chalk'
 
-export default (retrain = false) => {
+export default ({retrain, name}) => {
   let preprocessor = data =>
     _.map(data.colors, (color, idx) => ({
       input: data.brightnesses[idx],
@@ -20,7 +20,7 @@ export default (retrain = false) => {
     train({
       brainType: brain.NeuralNetwork,
       networkOptions,
-      name: 'brightness',
+      name,
       retrain,
       preprocessor,
       trainingSets: ['first'],

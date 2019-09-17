@@ -1,7 +1,7 @@
 import brain from 'brain.js'
 import { train } from '../core/train'
 
-export default (retrain = false) => {
+export default ({retrain, name}) => {
   let neuroAddition = new brain.recurrent.LSTM()
   let networkOptions = {
     hiddenLayers: [20]
@@ -14,7 +14,7 @@ export default (retrain = false) => {
       brainType: brain.recurrent.LSTM,
       networkOptions,
       trainingOptions,
-      name: 'simpleMath',
+      name,
       retrain,
       trainingSets: ['addition']
     })
