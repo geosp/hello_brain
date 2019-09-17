@@ -3,13 +3,19 @@ import { train } from '../core/train'
 
 export let simpleMath = () => {
   let neuroAddition = new brain.recurrent.LSTM()
+  let networkOptions = {
+    hiddenLayers: [20]
+  } as brain.INeuralNetworkOptions
+  let trainingOptions = {
+    errorThresh: 0.025
+  } as brain.INeuralNetworkTrainingOptions
   neuroAddition.fromJSON(
     train({
       brainType: brain.recurrent.LSTM,
+      networkOptions,
+      trainingOptions,
       name: 'simpleMath',
       retrain: false,
-      networkOptions: { hiddenLayers: [20] },
-      trainingOptions: { errorThresh: 0.025 },
       trainingSets: ['addition']
     })
   )

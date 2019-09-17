@@ -11,15 +11,19 @@ export let brightness = () => {
     }))
   let denormalize = color =>
     _.map(_.keys(color), k => Math.floor(256 * color[k]))
+    
   let neuroBrightness = new brain.NeuralNetwork()
+  let networkOptions = {
+    hiddenLayers: [3],
+  } as brain.INeuralNetworkOptions
   neuroBrightness.fromJSON(
     train({
       brainType: brain.NeuralNetwork,
+      networkOptions,
       name: 'brightness',
       retrain: false,
-      networkOptions: { hiddenLayers: [3] },
       preprocessor,
-      trainingSets: ['first']
+      trainingSets: ['first'],
     })
   )
   // Generating colors based on brightness prefferences.

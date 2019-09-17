@@ -3,7 +3,6 @@ import { train } from '../core/train'
 import _ from 'lodash'
 
 export let count = () => {
-  let neuroCount = new brain.recurrent.LSTMTimeStep()
   let extendDataSet = () => {
     let a = _.tail([...Array(6).keys()])
     let b = _.clone(a).reverse()
@@ -12,18 +11,26 @@ export let count = () => {
       b,
     ]
   }
+
+  let neuroCount = new brain.recurrent.LSTMTimeStep()
+  let networkOptions = {
+    hiddenLayers: [3],
+  } as brain.INeuralNetworkOptions
+  let trainingOptions = {
+    errorThresh: 0.00005,
+  } as brain.INeuralNetworkTrainingOptions
   neuroCount.fromJSON(
     train({
       brainType: brain.recurrent.LSTMTimeStep,
+      networkOptions,
+      // trainingOptions,
       name: 'count',
       retrain: false,
       svg: true,
       svgOptions: { width: 400, height: 300},
-      networkOptions: { hiddenLayers: [3] },
       trainingSets: ['forward', 'backward'],
       // preprocessor: data => [...data, ...extendDataSet()],
       // preprocessor: extendDataSet,
-      // trainingOptions: {errorThresh: 0.00005}
     })
   )
   let countInput = [3, 2]

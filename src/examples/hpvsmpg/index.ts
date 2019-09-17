@@ -13,20 +13,25 @@ import {
 
 export let hpvsmpg = () => {
   let model = new brain.NeuralNetwork()
+  let networkOptions = {
+    hiddenLayers: [2],
+    activation: 'sigmoid'
+  } as brain.INeuralNetworkOptions
+  let trainingOptions = {
+    errorThresh: 0.0138,
+    // iterations: 50,
+    callbackPeriod: 1,
+    callback: errorLogger,
+  } as brain.INeuralNetworkTrainingOptions
   model.fromJSON(
     train({
       brainType: brain.NeuralNetwork,
+      networkOptions,
+      trainingOptions,
       name: 'hpvsmpg',
       retrain: false,
       svg: true,
       svgOptions: { width: 500, height: 600},
-      networkOptions: { hiddenLayers: [2], activation: 'sigmoid' },
-      trainingOptions: {
-        errorThresh: 0.0138,
-        // iterations: 50,
-        callbackPeriod: 1,
-        callback: errorLogger,
-      },
       trainingSets: ['empty'],
       preprocessor,
     })

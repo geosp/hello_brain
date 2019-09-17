@@ -148,6 +148,7 @@ export let readNumber = () => {
       '      #' +
       '# ##  #'
   )
+
   let numbers = { zero, one, two, three, four, five, six, seven, eight, nine }
   let almostNumbers = { almostSix, almostSeven, almostEight, almostNine }
   let data = _.flow(
@@ -160,15 +161,15 @@ export let readNumber = () => {
     // Input size 49 and output size 9 so a good number is (inputSize - OutputSize) / 2 for the first layer to start.
     // Adding more nodes or an additional layer over fits our neural network so this seems to be the sweet spot.
     hiddenLayers: [20],
-    activation: 'leaky-relu'// Interesting comparison here between sigmoid  and leaky-relu.
-  }
+    activation: 'leaky-relu' ,// Interesting comparison here between sigmoid  and leaky-relu.
+  } as brain.INeuralNetworkOptions
   let trainingOptions = {
     // Experiment with learningRate and momentum watch the effect on iterations and classification accuracy in ther error graph.
     // learningRate: 0.1,
     // momentum: 0.7,
     callbackPeriod: 1,
     callback: errorLogger,
-  }
+  } as brain.INeuralNetworkTrainingOptions
   neuro.fromJSON(
     train({
       brainType: brain.NeuralNetwork,
@@ -179,7 +180,7 @@ export let readNumber = () => {
       networkOptions,
       trainingOptions,
       preprocessor: () => data,
-      trainingSets: ['empty']
+      trainingSets: ['empty'],
     })
   )
 

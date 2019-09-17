@@ -3,7 +3,6 @@ import { train } from '../core/train'
 import _ from 'lodash'
 
 export let restaurants = () => {
-  let neuroRestaurants = new brain.NeuralNetwork()
   let preprocessor = data => {
     let values = _.values(data)
     return _.map(_.keys(data), (name, idx) => ({
@@ -11,18 +10,22 @@ export let restaurants = () => {
       output: { [name]: 1 },
     }))
   }
-  
+
+  let neuroRestaurants = new brain.NeuralNetwork()
+  let networkOptions = {
+    hiddenLayers: [3],
+  } as brain.INeuralNetworkOptions
   neuroRestaurants.fromJSON(
     train({
       brainType: brain.NeuralNetwork,
+      networkOptions,
       name: 'restaurants',
       retrain: false,
-      networkOptions: { hiddenLayers: [3] },
       trainingSets: ['first'],
       preprocessor,
     })
   )
-  // Prinsiple of representative values encoded as a vector is applied.
+  // Principle of representative values encoded as a vector is applied.
   // This implies an object like this: { Monday: 1, Tuesday: 0, Wednesday: 0 ....}
   let restaurantsInput = { Monday: 1 }
   console.log({

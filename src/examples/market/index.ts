@@ -12,21 +12,27 @@ import { trainingData, marketDataPreprocessor, denormailizeData } from './util'
 
 export let market = () => {
   let neuroMarket = new brain.recurrent.LSTMTimeStep()
+  let networkOptions = {
+    hiddenLayers: [8, 8],
+    inputSize: 4,
+    outputSize: 4,
+  } as brain.INeuralNetworkOptions
+  let trainingOptions = {
+    learningRate: 0.005,
+    errorThresh: 0.02,
+    // iterations: 10000,
+    callbackPeriod: 1,
+    callback: errorLogger,
+  } as brain.INeuralNetworkTrainingOptions
   neuroMarket.fromJSON(
     train({
       brainType: brain.recurrent.LSTMTimeStep,
+      networkOptions,
+      trainingOptions,
       name: 'market',
       retrain: false,
       svg: true,
       svgOptions: { width: 1000, height: 1250 },
-      networkOptions: { hiddenLayers: [8, 8], inputSize: 4, outputSize: 4 },
-      trainingOptions: {
-        learningRate: 0.005,
-        errorThresh: 0.02,
-        // iterations: 10000,
-        callbackPeriod: 1,
-        callback: errorLogger,
-      },
       preprocessor: marketDataPreprocessor,
       trainingSets: ['first'],
     })

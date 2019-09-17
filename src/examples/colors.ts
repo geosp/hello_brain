@@ -8,13 +8,17 @@ export let colors = () => {
       input: color,
       output: data.brightnesses[idx],
     }))
+
   let neuroColors = new brain.NeuralNetwork()
+  let networkOptions = {
+    hiddenLayers: [3],
+  } as brain.INeuralNetworkOptions
   neuroColors.fromJSON(
     train({
       brainType: brain.NeuralNetwork,
+      networkOptions,
       name: 'colors',
       retrain: false,
-      networkOptions: { hiddenLayers: [3] },
       preprocessor,
       trainingSets: ['first']
     })

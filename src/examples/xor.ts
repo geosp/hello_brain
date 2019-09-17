@@ -4,12 +4,15 @@ import { train } from '../core/train'
 
 export let xor = () => {
   let neuroXor = new brain.NeuralNetwork()
+  let networkOptions = {
+    hiddenLayers: [3]
+  } as brain.INeuralNetworkOptions
   neuroXor.fromJSON(
     train({
       brainType: brain.NeuralNetwork,
+      networkOptions,
       name: 'xor',
       retrain: false,
-      networkOptions: { hiddenLayers: [3] },
       trainingSets: ['first']
     })
   )
