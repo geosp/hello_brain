@@ -167,7 +167,7 @@ export let readNumber = () => {
         // Input size 49 and output size 9 so a good number is (inputSize - OutputSize) / 2 for the first layer.
         // Adding more nodes or an additional layer over fits our neural network so this seems to be the sweet spot.
         hiddenLayers: [20],
-        activation: 'leaky-relu'// Interesting comparison her between sigmoid  and leaky-relu.
+        activation: 'leaky-relu'// Interesting comparison here between sigmoid  and leaky-relu.
       },
       trainingOptions: {
         callbackPeriod: 1,
