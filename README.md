@@ -27,8 +27,9 @@ retrain to false.
 
 ## Running the examples
 1. `npm install`
-2. Keep `npm run watch` running or run `npm run build:js` everytime a change is made.
-2. `npm start [exmple_name]`
+2. Keep `npm run watch` running or run `npm run build:js` every time a change is made.
+2. Run using a previously trained example`npm start [exmple_name]` (If not trained before it will train first.)
+3. Train and run an example `npm start [exmple_name] train`
 
 ## References
 
