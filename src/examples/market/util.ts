@@ -14,7 +14,7 @@ const processData = ({ data, extremes, fn }) =>
       low: fn({ ...extremes, value: low }),
       close: fn({ ...extremes, value: close }),
       date
-    }),
+    }) as {date: string, open: number, high: number, low: number, close: number },
     data
   )
 let getDayExtremes = _.flow(
