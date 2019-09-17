@@ -89,7 +89,7 @@ export let train = ({
   if (!neuronet) throw Error('Missing training sets or trained network.')
   else return neuronet
 }
-export let errorLogger = ({iterations, error}) => {
+export let errorLogger = ({ error}) => {
   trainingErrors.push(error)
 }
 export let getErrorPlot = () => ({
