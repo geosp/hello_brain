@@ -31,7 +31,7 @@ export let market = () => {
       trainingSets: ['first'],
     })
   )
-  let forcastInterval = 5
+  let forcastInterval = 20
   let marketForcastInput = _.last(trainingData)
   let marketForcastOutput = neuroMarket.forecast(
     marketForcastInput,
@@ -81,7 +81,7 @@ export let market = () => {
 
   // @ts-ignore
   stack([forcastSeries], {
-    title: '5 Day Market Data Forcast - GM',
+    title: `${forcastInterval} Day Market Data Forcast - GM`,
     yaxis: { title: 'US Dollars' },
   })
 
