@@ -2,7 +2,7 @@ import brain from 'brain.js'
 import { train } from '../core/train'
 import _ from 'lodash'
 
-export let count = () => {
+export default (retrain = false) => {
   let extendDataSet = () => {
     let a = _.tail([...Array(6).keys()])
     let b = _.clone(a).reverse()
@@ -25,7 +25,7 @@ export let count = () => {
       networkOptions,
       // trainingOptions,
       name: 'count',
-      retrain: false,
+      retrain,
       svg: true,
       svgOptions: { width: 400, height: 300},
       trainingSets: ['forward', 'backward'],

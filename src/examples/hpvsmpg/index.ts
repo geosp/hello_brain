@@ -11,7 +11,7 @@ import {
   rawData,
 } from './util'
 
-export let hpvsmpg = () => {
+export default (retrain = false) => {
   let model = new brain.NeuralNetwork()
   let networkOptions = {
     hiddenLayers: [2],
@@ -29,7 +29,7 @@ export let hpvsmpg = () => {
       networkOptions,
       trainingOptions,
       name: 'hpvsmpg',
-      retrain: false,
+      retrain,
       svg: true,
       svgOptions: { width: 500, height: 600},
       trainingSets: ['empty'],

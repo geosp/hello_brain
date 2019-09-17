@@ -8,14 +8,14 @@ const recall = path => JSON.parse(fs.readFileSync(path, 'utf8'))
 export let train = ({
   brainType,
   preprocessor = x => x,
-  retrain,
-  name,
-  networkOptions = {},
-  trainingOptions = {},
-  trainingSets,
+  retrain = false,
+  name = 'anonymous',
+  networkOptions = {} as brain.INeuralNetworkOptions,
+  trainingOptions = {} as brain.INeuralNetworkTrainingOptions,
+  trainingSets = [] as string[],
   svg = false,
   svgOptions = {}
-}) => {
+}) : INeuralNetworkJSON => {
   let neuronet: INeuralNetworkJSON | any
   let neuroNetRootPath = `data/neuronet/${name}`
   let neuroNetPath = `${neuroNetRootPath}/${name}.json`
@@ -75,6 +75,9 @@ export let train = ({
         neuroNetPath,
         `${neuroNetRootPath}/${Math.round(+new Date() / 1e3)}.bck`
       )
+    }
+    if (!fs.existsSync(neuroNetRootPath)) {
+      fs.mkdirSync(neuroNetRootPath)
     }
     fs.writeFileSync(neuroNetPath, JSON.stringify(neuronet))
     if (svg) {

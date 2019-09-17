@@ -2,7 +2,7 @@ import brain from 'brain.js'
 import { train } from '../core/train'
 import _ from 'lodash'
 
-export let restaurants = () => {
+export default (retrain = false) => {
   let preprocessor = data => {
     let values = _.values(data)
     return _.map(_.keys(data), (name, idx) => ({
@@ -20,7 +20,7 @@ export let restaurants = () => {
       brainType: brain.NeuralNetwork,
       networkOptions,
       name: 'restaurants',
-      retrain: false,
+      retrain,
       trainingSets: ['first'],
       preprocessor,
     })

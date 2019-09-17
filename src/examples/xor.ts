@@ -2,7 +2,7 @@ import brain from 'brain.js'
 import _ from 'lodash/fp'
 import { train } from '../core/train'
 
-export let xor = () => {
+export default (retrain = false) => {
   let neuroXor = new brain.NeuralNetwork()
   let networkOptions = {
     hiddenLayers: [3]
@@ -12,7 +12,7 @@ export let xor = () => {
       brainType: brain.NeuralNetwork,
       networkOptions,
       name: 'xor',
-      retrain: false,
+      retrain,
       trainingSets: ['first']
     })
   )

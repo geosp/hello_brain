@@ -2,7 +2,7 @@ import brain from 'brain.js'
 import { train } from '../core/train'
 import _ from 'lodash'
 
-export let colors = () => {
+export default (retrain = false) => {
   let preprocessor = data =>
     _.map(data.colors, (color, idx) => ({
       input: color,
@@ -18,7 +18,7 @@ export let colors = () => {
       brainType: brain.NeuralNetwork,
       networkOptions,
       name: 'colors',
-      retrain: false,
+      retrain,
       preprocessor,
       trainingSets: ['first']
     })

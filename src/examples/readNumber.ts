@@ -3,7 +3,7 @@ import { train, trainingErrors, errorLogger, getErrorPlot } from '../core/train'
 import _ from 'lodash/fp'
 import { plot, stack } from 'nodeplotlib'
 
-export let readNumber = () => {
+export default (retrain = false) => {
   let normalizeNumber = (number: String) => {
     if (number.length === 49) return [...number].map(c => (c === '#' ? 1 : 0))
     else throw 'Invalid length!!!'
@@ -174,7 +174,7 @@ export let readNumber = () => {
     train({
       brainType: brain.NeuralNetwork,
       name: 'readNumber',
-      retrain: true,
+      retrain,
       svg: true,
       svgOptions: { width: 1200, height: 1500},
       networkOptions,

@@ -1,7 +1,7 @@
 import brain from 'brain.js'
 import { train } from '../core/train'
 
-export let book = () => {
+export default (retrain = false) => {
   let neuro = new brain.recurrent.LSTM()
   let trainingOptions = {
     iterations: 1500,
@@ -12,7 +12,7 @@ export let book = () => {
       brainType: brain.recurrent.LSTM,
       trainingOptions,
       name: 'book',
-      retrain: false,
+      retrain,
       trainingSets: ['first'],
     })
   )

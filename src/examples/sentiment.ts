@@ -1,18 +1,18 @@
 import brain from 'brain.js'
 import { train } from '../core/train'
 
-export let sentiment = () => {
+export default (retrain = false) => {
   let neuro = new brain.recurrent.LSTM()
   let trainingOptions = {
     iterations: 1000,
     errorThresh: 0.011,
-  } as brain.INeuralNetworkOptions
+  } as brain.INeuralNetworkTrainingOptions
   neuro.fromJSON(
     train({
       brainType: brain.recurrent.LSTM,
       trainingOptions,
       name: 'sentiment',
-      retrain: false,
+      retrain,
       trainingSets: ['first'],
     })
   )
