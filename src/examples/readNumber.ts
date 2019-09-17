@@ -110,7 +110,7 @@ export let readNumber = () => {
   )
 
   let almostNine = normalizeNumber(
-    '# # # #' +
+      '# # # #' +
       '#      ' +
       '#     #' +
       '# # # #' +
@@ -120,7 +120,7 @@ export let readNumber = () => {
   )
 
   let almostEight = normalizeNumber(
-    '# # # #' +
+      '# # # #' +
       '#      ' +
       '#     #' +
       '# # # #' +
@@ -130,7 +130,7 @@ export let readNumber = () => {
   )
 
   let almostSeven = normalizeNumber(
-    '#   # #' +
+      '#   # #' +
       '       ' +
       '      #' +
       '    # #' +
