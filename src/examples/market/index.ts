@@ -16,7 +16,7 @@ export let market = () => {
     train({
       brainType: brain.recurrent.LSTMTimeStep,
       name: 'market',
-      retrain: true,
+      retrain: false,
       svg: true,
       svgOptions: { width: 1000, height: 1250 },
       options: { hiddenLayers: [8, 8], inputSize: 4, outputSize: 4 },
