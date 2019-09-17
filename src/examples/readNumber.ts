@@ -1,6 +1,7 @@
 import brain from 'brain.js'
-import { train } from '../core/train'
+import { train, trainingErrors, errorLogger, getErrorPlot } from '../core/train'
 import _ from 'lodash/fp'
+import { plot, stack } from 'nodeplotlib'
 
 export let readNumber = () => {
   let normalizeNumber = (number: String) => {
@@ -165,7 +166,12 @@ export let readNumber = () => {
       networkOptions: {
         // Input size 49 and output size 9 so a good number is (inputSize - OutputSize) / 2 for the first layer.
         // Adding more nodes or an additional layer over fits our neural network so this seems to be the sweet spot.
-        hiddenLayers: [20, 10],
+        hiddenLayers: [20],
+        activation: 'leaky-relu'// Interesting comparison her between sigmoid  and leaky-relu.
+      },
+      trainingOptions: {
+        callbackPeriod: 1,
+        callback: errorLogger,
       },
       preprocessor: () => data,
       trainingSets: ['empty']
@@ -175,4 +181,11 @@ export let readNumber = () => {
   let testData = [..._.values(numbers), ..._.values(almostNumbers)]
   let results = _.map(number => brain.likely(number, neuro))(testData)
   console.log({input: `${_.keys(numbers).join()},${_.keys(almostNumbers)}`, output: results.join()})
+  if (trainingErrors.length > 0) {
+    let errorPlot = getErrorPlot()
+    errorPlot.layout.title = results.join()
+    // @ts-ignore
+    stack(errorPlot.plot, errorPlot.layout)
+    plot()
+  }
 }
