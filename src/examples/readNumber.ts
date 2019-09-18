@@ -10,7 +10,7 @@ export default ({ retrain, name }) => {
   }
 
   let zero = normalizeNumber(
-    '#######' +
+      '#######' +
       '#     #' +
       '#     #' +
       '#     #' +
@@ -20,7 +20,7 @@ export default ({ retrain, name }) => {
   )
 
   let one = normalizeNumber(
-    '   #   ' +
+      '   #   ' +
       '   #   ' +
       '   #   ' +
       '   #   ' +
@@ -30,7 +30,7 @@ export default ({ retrain, name }) => {
   )
 
   let two = normalizeNumber(
-    '#######' +
+      '#######' +
       '      #' +
       '      #' +
       '#######' +
@@ -40,7 +40,7 @@ export default ({ retrain, name }) => {
   )
 
   let three = normalizeNumber(
-    '#######' +
+      '#######' +
       '      #' +
       '      #' +
       '#######' +
@@ -50,7 +50,7 @@ export default ({ retrain, name }) => {
   )
 
   let four = normalizeNumber(
-    '#     #' +
+      '#     #' +
       '#     #' +
       '#######' +
       '      #' +
@@ -60,7 +60,7 @@ export default ({ retrain, name }) => {
   )
 
   let five = normalizeNumber(
-    '#######' +
+      '#######' +
       '#      ' +
       '#      ' +
       '#######' +
@@ -70,7 +70,7 @@ export default ({ retrain, name }) => {
   )
 
   let six = normalizeNumber(
-    '#######' +
+      '#######' +
       '#      ' +
       '#      ' +
       '#######' +
@@ -80,7 +80,7 @@ export default ({ retrain, name }) => {
   )
 
   let seven = normalizeNumber(
-    '#######' +
+      '#######' +
       '      #' +
       '      #' +
       '      #' +
@@ -90,7 +90,7 @@ export default ({ retrain, name }) => {
   )
 
   let eight = normalizeNumber(
-    '#######' +
+      '#######' +
       '#     #' +
       '#     #' +
       '#######' +
@@ -100,7 +100,7 @@ export default ({ retrain, name }) => {
   )
 
   let nine = normalizeNumber(
-    '#######' +
+      '#######' +
       '#     #' +
       '#     #' +
       '#######' +
@@ -110,7 +110,7 @@ export default ({ retrain, name }) => {
   )
 
   let almostNine = normalizeNumber(
-    '# # # #' +
+      '# # # #' +
       '#      ' +
       '#     #' +
       '# # # #' +
@@ -120,7 +120,7 @@ export default ({ retrain, name }) => {
   )
 
   let almostEight = normalizeNumber(
-    '# # # #' +
+      '# # # #' +
       '#      ' +
       '#     #' +
       '# # # #' +
@@ -130,7 +130,7 @@ export default ({ retrain, name }) => {
   )
 
   let almostSeven = normalizeNumber(
-    '#   # #' +
+      '#   # #' +
       '       ' +
       '      #' +
       '    # #' +
@@ -140,7 +140,7 @@ export default ({ retrain, name }) => {
   )
 
   let almostSix = normalizeNumber(
-    '###  ##' +
+      '###  ##' +
       '#      ' +
       '#      ' +
       '## ## #' +
@@ -192,11 +192,11 @@ export default ({ retrain, name }) => {
     let errorPlot = getErrorPlot()
     errorPlot.layout.title = JSON.stringify(
       { 
-        results: results.join(),
+        test_passed: results.join() === ([..._.keys(numbers), ..._.keys({six, seven, eight, nine})]).join(),
         networkOptions,
         trainingOptions
       }, null, 1
-    ).replace(/{|}|"|:/gi, '')
+    ).replace(/{|}|"/gi, '')
     // @ts-ignore
     stack(errorPlot.plot, errorPlot.layout)
     plot()

@@ -105,5 +105,6 @@ export let getErrorPlot = () => ({
     title: 'Iterations vs. % Error',
     xaxis: { title: 'Iterations', type: 'log' },
     yaxis: { title: '% Error' },
+    font: {size: 10}
   },
 })
