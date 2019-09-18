@@ -72,13 +72,6 @@ export let train = ({
     let stats = neuro.train(trainingData, { ...trainingOptions })
     console.log({ stats })
     neuronet = neuro.toJSON()
-    if (fs.existsSync(neuroNetPath)) {
-      console.log({ message: 'Backingup last neuronet.' })
-      fs.renameSync(
-        neuroNetPath,
-        `${neuroNetRootPath}/${Math.round(+new Date() / 1e3)}.bck`
-      )
-    }
     if (!fs.existsSync(neuroNetRootPath)) {
       fs.mkdirSync(neuroNetRootPath)
     }
