@@ -2,7 +2,6 @@ import brain, { INeuralNetworkJSON } from 'brain.js'
 import fs from 'fs'
 import _ from 'lodash/fp'
 
-let parseNumber = value => Number(_.trim(value))
 export let trainingErrors: number[] = []
 const recall = path => JSON.parse(fs.readFileSync(path, 'utf8'))
 export let train = ({
