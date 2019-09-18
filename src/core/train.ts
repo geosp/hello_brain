@@ -14,13 +14,17 @@ export let train = ({
   trainingOptions = {} as brain.INeuralNetworkTrainingOptions,
   trainingSets = [] as string[],
   svg = false,
-  svgOptions = {}
-}) : INeuralNetworkJSON => {
+  svgOptions = {},
+}): INeuralNetworkJSON => {
   let neuronet: INeuralNetworkJSON | any
   let neuroNetRootPath = `data/neuronet/${name}`
   let neuroNetPath = `${neuroNetRootPath}/${name}.json`
   if (retrain || !fs.existsSync(neuroNetPath)) {
     trainingErrors = []
+    trainingOptions = _.merge(trainingOptions, {
+      callbackPeriod: 1,
+      callback: errorLogger,
+    })
     let trainingData = _.reduce(
       // @ts-ignore
       (data, setName) => [
@@ -92,7 +96,7 @@ export let train = ({
   if (!neuronet) throw Error('Missing training sets or trained network.')
   else return neuronet
 }
-export let errorLogger = ({ error}) => {
+export let errorLogger = ({ error }) => {
   trainingErrors.push(error)
 }
 export let getErrorPlot = () => ({

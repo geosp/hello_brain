@@ -5,7 +5,6 @@ import moment from 'moment'
 import {
   train,
   trainingErrors,
-  errorLogger,
   getErrorPlot,
 } from '../../core/train'
 import { trainingData, marketDataPreprocessor, denormailizeData } from './util'
@@ -21,8 +20,6 @@ export default ({retrain, name}) => {
     learningRate: 0.005,
     errorThresh: 0.02,
     // iterations: 10000,
-    callbackPeriod: 1,
-    callback: errorLogger,
   } as brain.INeuralNetworkTrainingOptions
   neuroMarket.fromJSON(
     train({

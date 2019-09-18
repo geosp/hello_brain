@@ -1,5 +1,5 @@
 import brain from 'brain.js'
-import { train, trainingErrors, errorLogger, getErrorPlot} from '../../core/train'
+import { train, trainingErrors, getErrorPlot} from '../../core/train'
 import _ from 'lodash/fp'
 import { range } from 'lodash'
 import { plot, stack } from 'nodeplotlib'
@@ -20,8 +20,6 @@ export default ({retrain, name}) => {
   let trainingOptions = {
     errorThresh: 0.0138,
     // iterations: 50,
-    callbackPeriod: 1,
-    callback: errorLogger,
   } as brain.INeuralNetworkTrainingOptions
   model.fromJSON(
     train({

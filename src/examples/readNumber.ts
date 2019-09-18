@@ -1,16 +1,16 @@
 import brain from 'brain.js'
-import { train, trainingErrors, errorLogger, getErrorPlot } from '../core/train'
+import { train, trainingErrors, getErrorPlot } from '../core/train'
 import _ from 'lodash/fp'
 import { plot, stack } from 'nodeplotlib'
 
-export default ({retrain, name}) => {
+export default ({ retrain, name }) => {
   let normalizeNumber = (number: String) => {
     if (number.length === 49) return [...number].map(c => (c === '#' ? 1 : 0))
     else throw 'Invalid length!!!'
   }
 
   let zero = normalizeNumber(
-      '#######' +
+    '#######' +
       '#     #' +
       '#     #' +
       '#     #' +
@@ -20,7 +20,7 @@ export default ({retrain, name}) => {
   )
 
   let one = normalizeNumber(
-      '   #   ' +
+    '   #   ' +
       '   #   ' +
       '   #   ' +
       '   #   ' +
@@ -30,7 +30,7 @@ export default ({retrain, name}) => {
   )
 
   let two = normalizeNumber(
-      '#######' +
+    '#######' +
       '      #' +
       '      #' +
       '#######' +
@@ -40,7 +40,7 @@ export default ({retrain, name}) => {
   )
 
   let three = normalizeNumber(
-      '#######' +
+    '#######' +
       '      #' +
       '      #' +
       '#######' +
@@ -50,7 +50,7 @@ export default ({retrain, name}) => {
   )
 
   let four = normalizeNumber(
-      '#     #' +
+    '#     #' +
       '#     #' +
       '#######' +
       '      #' +
@@ -60,7 +60,7 @@ export default ({retrain, name}) => {
   )
 
   let five = normalizeNumber(
-      '#######' +
+    '#######' +
       '#      ' +
       '#      ' +
       '#######' +
@@ -70,7 +70,7 @@ export default ({retrain, name}) => {
   )
 
   let six = normalizeNumber(
-      '#######' +
+    '#######' +
       '#      ' +
       '#      ' +
       '#######' +
@@ -80,7 +80,7 @@ export default ({retrain, name}) => {
   )
 
   let seven = normalizeNumber(
-      '#######' +
+    '#######' +
       '      #' +
       '      #' +
       '      #' +
@@ -90,7 +90,7 @@ export default ({retrain, name}) => {
   )
 
   let eight = normalizeNumber(
-      '#######' +
+    '#######' +
       '#     #' +
       '#     #' +
       '#######' +
@@ -100,7 +100,7 @@ export default ({retrain, name}) => {
   )
 
   let nine = normalizeNumber(
-      '#######' +
+    '#######' +
       '#     #' +
       '#     #' +
       '#######' +
@@ -110,7 +110,7 @@ export default ({retrain, name}) => {
   )
 
   let almostNine = normalizeNumber(
-      '# # # #' +
+    '# # # #' +
       '#      ' +
       '#     #' +
       '# # # #' +
@@ -120,7 +120,7 @@ export default ({retrain, name}) => {
   )
 
   let almostEight = normalizeNumber(
-      '# # # #' +
+    '# # # #' +
       '#      ' +
       '#     #' +
       '# # # #' +
@@ -130,7 +130,7 @@ export default ({retrain, name}) => {
   )
 
   let almostSeven = normalizeNumber(
-      '#   # #' +
+    '#   # #' +
       '       ' +
       '      #' +
       '    # #' +
@@ -140,7 +140,7 @@ export default ({retrain, name}) => {
   )
 
   let almostSix = normalizeNumber(
-      '###  ##' +
+    '###  ##' +
       '#      ' +
       '#      ' +
       '## ## #' +
@@ -161,14 +161,12 @@ export default ({retrain, name}) => {
     // Input size 49 and output size 9 so a good number is (inputSize - OutputSize) / 2 for the first layer to start.
     // Adding more nodes or an additional layer over fits our neural network so this seems to be the sweet spot.
     hiddenLayers: [20],
-    activation: 'leaky-relu' ,// Interesting comparison here between sigmoid  and leaky-relu.
+    activation: 'leaky-relu', // Interesting comparison here between sigmoid  and leaky-relu.
   } as brain.INeuralNetworkOptions
   let trainingOptions = {
     // Experiment with learningRate and momentum watch the effect on iterations and classification accuracy in ther error graph.
     // learningRate: 0.1,
     // momentum: 0.7,
-    callbackPeriod: 1,
-    callback: errorLogger,
   } as brain.INeuralNetworkTrainingOptions
   neuro.fromJSON(
     train({
@@ -176,7 +174,7 @@ export default ({retrain, name}) => {
       name,
       retrain,
       svg: true,
-      svgOptions: { width: 1200, height: 1500},
+      svgOptions: { width: 1200, height: 1500 },
       networkOptions,
       trainingOptions,
       preprocessor: () => data,
@@ -186,10 +184,19 @@ export default ({retrain, name}) => {
 
   let testData = [..._.values(numbers), ..._.values(almostNumbers)]
   let results = _.map(number => brain.likely(number, neuro))(testData)
-  console.log({input: `${_.keys(numbers).join()},${_.keys(almostNumbers)}`, output: results.join()})
+  console.log({
+    input: `${_.keys(numbers).join()},${_.keys(almostNumbers)}`,
+    output: results.join(),
+  })
   if (trainingErrors.length > 0) {
     let errorPlot = getErrorPlot()
-    errorPlot.layout.title = JSON.stringify({ results: results.join(), networkOptions, trainingOptions})
+    errorPlot.layout.title = JSON.stringify(
+      { 
+        results: results.join(),
+        networkOptions,
+        trainingOptions
+      }, null, 1
+    ).replace(/{|}|"|:/gi, '')
     // @ts-ignore
     stack(errorPlot.plot, errorPlot.layout)
     plot()
