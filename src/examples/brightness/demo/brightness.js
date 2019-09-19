@@ -4,19 +4,8 @@ import {
 } from './node_modules/@polymer/lit-element/lit-element.js'
 import "./node_modules/@polymer/paper-slider/paper-slider.js"
 
-const normalizeColor = (value) => Math.floor(256 * value)
-const normalizeInput = (value) => value > 0 ? (value / 100) : value
-function throttled(delay, fn) {
-  let lastCall = 0;
-  return (...args) => {
-    const now = (new Date).getTime();
-    if (now - lastCall < delay) {
-      return;
-    }
-    lastCall = now;
-    return fn(...args);
-  }
-}
+const normalizeColor = colors => colors.map(value => Math.floor(256 * value))
+const denormalizeInput = (value) => value > 0 ? (value / 100) : value
 class ColorAdvisor extends LitElement {
   static get properties() {
     return {
@@ -37,17 +26,17 @@ class ColorAdvisor extends LitElement {
     super.connectedCallback()
     document.addEventListener('readystatechange', () => {
       let lightSlider = this.shadowRoot.querySelector('.lightSlider');
-      lightSlider.addEventListener('change', throttled(600, function() {
+      lightSlider.addEventListener('change', _.throttle(function() {
         let { value } = lightSlider
-        this.light = normalizeInput(value)
+        this.light = denormalizeInput(value)
         this.suggestColor()
-      }.bind(this)))
+      }.bind(this), 600))
       let neutralSlider = this.shadowRoot.querySelector('.neutralSlider');
-      neutralSlider.addEventListener('change', throttled(600, function() {
+      neutralSlider.addEventListener('change', _.throttle(function() {
         let { value } = neutralSlider
-        this.neutral = normalizeInput(value)
+        this.neutral = denormalizeInput(value)
         this.suggestColor()
-      }.bind(this)))
+      }.bind(this), 600)) 
     })
   }
   async getABrain() {
@@ -60,7 +49,7 @@ class ColorAdvisor extends LitElement {
   }
   suggestColor () {
     let {red, green, blue} = this.brain.run({ light: this.light, neutral: this.neutral })
-    this.color = [normalizeColor(red), normalizeColor(green), normalizeColor(blue)]
+    this.color = normalizeColor([red, green, blue])
     console.log({color: this.color})
   }
   render() {
