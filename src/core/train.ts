@@ -69,7 +69,7 @@ export let train = ({
       data: JSON.stringify((trainingData as []).slice(0, 10)),
       trainingOptions,
     })
-    let stats = neuro.train(trainingData, { ...trainingOptions })
+    let stats = neuro.train(trainingData, trainingOptions)
     console.log({ stats })
     neuronet = neuro.toJSON()
     if (!fs.existsSync(neuroNetRootPath)) {
