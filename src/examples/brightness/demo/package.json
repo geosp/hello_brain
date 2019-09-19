@@ -1,0 +1,16 @@
+{
+  "name": "@smartprocure/demo",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@polymer/lit-element": "^0.7.1",
+    "@polymer/paper-slider": "^3.0.1",
+    "brain.js": "^2.0.0-alpha.9"
+  },
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.10"
+  }
+}

@@ -1,7 +1,9 @@
 import brain from 'brain.js'
-import { train } from '../core/train'
+import { train } from '../../core/train'
 import _ from 'lodash'
 import chalk from 'chalk'
+import cpx from 'cpx'
+import fs from 'fs'
 
 export default ({retrain, name}) => {
   let preprocessor = data =>
@@ -38,4 +40,17 @@ export default ({retrain, name}) => {
       })}`
     )
   )
+
+  if (retrain) {
+    let demoPath = `${__dirname}/demo`
+    if (!fs.existsSync(demoPath)) {
+      fs.mkdirSync(demoPath)
+    }
+    
+    fs.writeFileSync(`${demoPath}/${name}.json`, JSON.stringify(neuroBrightness.toJSON()))
+  }
+  let src = './src/examples/brightness/demo/**/*'
+  let dest = './lib/examples/brightness/demo'
+  cpx.copy(src, dest)
+  cpx.watch(`${src}.*`, dest)
 }
