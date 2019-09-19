@@ -49,7 +49,7 @@ export default async ({retrain, name}) => {
   if (!fs.existsSync(`${demoPath}/node_modules`)) {
     console.log('Installing required packages for web appliction demo.')
     await exec('npm install', {cwd: demoPath})
-    console.log('Install complet. Run again to view the application demo.')
+    console.log('Installation complete. Run again to view the application demo.')
   } else {
     await exec('npm run start', {cwd: demoPath})
   }
