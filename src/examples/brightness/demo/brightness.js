@@ -1,7 +1,7 @@
 import {
   LitElement,
   html,
-} from 'https://unpkg.com/@polymer/lit-element@latest/lit-element.js?module'
+} from './node_modules/@polymer/lit-element/lit-element.js'
 import "./node_modules/@polymer/paper-slider/paper-slider.js"
 
 const normalizeColor = (value) => Math.floor(256 * value)
