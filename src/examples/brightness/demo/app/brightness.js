@@ -2,8 +2,8 @@
 import {
   LitElement,
   html,
-} from './node_modules/@polymer/lit-element/lit-element.js'
-import './node_modules/@polymer/paper-slider/paper-slider.js'
+} from '../node_modules/@polymer/lit-element/lit-element.js'
+import '../node_modules/@polymer/paper-slider/paper-slider.js'
 
 const debounceLmit = 200
 const denormalizeColor = colors => colors.map(value => Math.floor(256 * value))

@@ -44,7 +44,7 @@ export default async ({retrain, name}) => {
 
   let demoPath = `${process.cwd()}/src/examples/${name}/demo`
   if (retrain) {
-    fs.writeFileSync(`${demoPath}/${name}.json`, JSON.stringify(neuroBrightness.toJSON()))
+    fs.writeFileSync(`${demoPath}/app/${name}.json`, JSON.stringify(neuroBrightness.toJSON()))
   }
   await exec('npm run start', {cwd: demoPath})
 }

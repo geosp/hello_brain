@@ -6,7 +6,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "owc-dev-server -p 55555 --open"
+    "start": "owc-dev-server  -p 55555 --app-index app/index.html --open"
   },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.10",
