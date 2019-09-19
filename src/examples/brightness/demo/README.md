@@ -6,6 +6,6 @@ This example uses a neural network model to drive color generation based on a ra
 
 ## To run the application
 
-1. Make sure to run `npm brightness train` from the  project root directory first. This step will generate the neural network use in this example. 
+1. Make sure to run `npm brightness train` from the  project root directory first. This step will generate the neural network used in this example. 
 2. Execute `npm install`
 3. Execute `npm start`
