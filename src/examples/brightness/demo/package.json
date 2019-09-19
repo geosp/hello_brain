@@ -5,14 +5,18 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "start": "owc-dev-server -p 55555 --open"
+  },
   "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.10",
     "@polymer/lit-element": "^0.7.1",
     "@polymer/paper-slider": "^3.0.1",
     "brain.js": "^2.0.0-alpha.9",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@webcomponents/webcomponentsjs": "^2.2.10"
+    "owc-dev-server": "^1.0.1"
   },
   "prettier": {
     "semi": false,

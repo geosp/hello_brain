@@ -2,10 +2,11 @@ import brain from 'brain.js'
 import { train } from '../../core/train'
 import _ from 'lodash'
 import chalk from 'chalk'
-import cpx from 'cpx'
 import fs from 'fs'
+import { exec } from 'child_process'
 
-export default ({retrain, name}) => {
+
+export default async ({retrain, name}) => {
   let preprocessor = data =>
     _.map(data.colors, (color, idx) => ({
       input: data.brightnesses[idx],
@@ -41,16 +42,9 @@ export default ({retrain, name}) => {
     )
   )
 
+  let demoPath = `${process.cwd()}/src/examples/${name}/demo`
   if (retrain) {
-    let demoPath = `${__dirname}/demo`
-    if (!fs.existsSync(demoPath)) {
-      fs.mkdirSync(demoPath)
-    }
-    
     fs.writeFileSync(`${demoPath}/${name}.json`, JSON.stringify(neuroBrightness.toJSON()))
   }
-  let src = './src/examples/brightness/demo/**/*'
-  let dest = './lib/examples/brightness/demo'
-  cpx.copy(src, dest)
-  cpx.watch(`${src}.*`, dest)
+  await exec('npm run start', {cwd: demoPath})
 }
