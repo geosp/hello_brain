@@ -13,5 +13,10 @@
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.10"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }
