@@ -24,9 +24,6 @@ class ColorAdvisor extends LitElement {
     this.color = [255, 255, 255]
     this.getABrain()
   }
-  async connectedCallback() {
-    super.connectedCallback()
-  }
   lightSliderChanged(e) {
     let slider = this.shadowRoot.querySelector('.lightSlider')
     let { value } = slider
