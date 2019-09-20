@@ -6,7 +6,7 @@ import fs from 'fs'
 import { exec } from 'child_process'
 
 
-export default async ({retrain, name}) => {
+export default ({retrain, name}) => {
   let preprocessor = data =>
     _.map(data.colors, (color, idx) => ({
       input: data.brightnesses[idx],
@@ -48,9 +48,9 @@ export default async ({retrain, name}) => {
   }
   if (!fs.existsSync(`${demoPath}/node_modules`)) {
     console.log('Installing required packages for web appliction demo.')
-    await exec('npm install', {cwd: demoPath})
+    exec('npm install', {cwd: demoPath})
     console.log('Installation complete. Run again to view the application demo.')
   } else {
-    await exec('npm run start', {cwd: demoPath})
+    exec('npm run start', {cwd: demoPath})
   }
 }
