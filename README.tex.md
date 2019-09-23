@@ -79,8 +79,4 @@ Neural networks are a way to universally model functions. When a neural network 
 
 ## Examples
 
-In the [examples] (https://github.com/geosp/hello_brain/tree/master/src/examples) you can find several examples using the [Brain.JS](https://brain.js.org) framework to create and train neural networks.
-
-
-
-
+In the [examples](https://github.com/geosp/hello_brain/tree/master/src/examples) directory you can find several examples using the [Brain.JS](https://brain.js.org) framework to create and train neural networks.
