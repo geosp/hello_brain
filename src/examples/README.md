@@ -32,7 +32,7 @@ changes to the example or the associated training data.
 
 ## References
 
-1. [Introduction to Neural Networks](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
-2. [Awesome lecture by Robert Plummer](https://scrimba.com/g/gneuralnetworks)
-3. [Brain.JS](https://brain.js.org) 
-4. [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com)
+1. [Awesome lecture by Robert Plummer](https://scrimba.com/g/gneuralnetworks)
+2. [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com)
+3. [Neural Networks Deep Dive](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+4. [Brain.JS](https://brain.js.org) 
