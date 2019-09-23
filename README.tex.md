@@ -77,6 +77,10 @@ Imagine we have a set of data representing the horse power $hp$, and the miles p
 
 Neural networks are a way to universally model functions. When a neural network is trained it becomes a function specific to the training domain. After training the acquired knowledge can be preserved by serializing $\hat W$, associated biases, and all the hyper parameters used during training. The resulting kernel of knowledge is very tiny in comparison to the training data and could be used almost anywhere including a web browser. Is as simple as using your AI framework of choice to instantiate $N$ by deserializing $\hat N$ and giving it an input, then you get your lovely output like magic.
 
+## Examples
+
+In the [examples] (https://github.com/geosp/hello_brain/tree/master/src/examples) you can find several examples using the [Brain.JS](https://brain.js.org) framework to create and train neural networks.
+
 
 
 
