@@ -2,7 +2,7 @@
 
 ## Description
 
-This project implements the examples outlined by the following video [Neural Networks with JavaScript - Full Course using Brain.js](https://youtu.be/6E6XecoTRVo)
+This project implements examples of using [Brain.JS](https://brain.js.org) with a functional approach.
 
 ## Implementation
 
