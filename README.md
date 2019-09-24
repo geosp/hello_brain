@@ -83,8 +83,12 @@ In the [examples](https://github.com/geosp/hello_brain/tree/master/src/examples)
 
 ## References
 
-1. [Awesome lecture by Robert Plummer creator of Brain.JS](https://scrimba.com/g/gneuralnetworks)
-2. [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com)
+1. [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com)
+2. [How Deep Neural Networks Work by Brandon Rohrer](https://end-to-end-machine-learning.teachable.com/p/how-deep-neural-networks-work)
 3. [Neural Networks Deep Dive](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
-4. [Brain.JS](https://brain.js.org) 
-5. [Point-Free Programming](https://simonsmith.io/dipping-a-toe-into-functional-js-with-lodash-fp)
+4. [Scrimba tutorial by Robert Plummer creator of Brain.JS](https://scrimba.com/g/gneuralnetworks) 
+5. [Lodash](https://lodash.com/docs)
+6. [Lodash FP](https://github.com/lodash/lodash/wiki/FP-Guide)
+7. [futil-js](https://github.com/smartprocure/futil-js)
+5. [Brain.JS](https://brain.js.org) 
+6. [Point-Free Programming](https://simonsmith.io/dipping-a-toe-into-functional-js-with-lodash-fp)
