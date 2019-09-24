@@ -1,4 +1,4 @@
-// point-free programming: https://simonsmith.io/dipping-a-toe-into-functional-js-with-lodash-fp
+// Functional is declarative
 import _ from 'lodash/fp'
 import F from 'futil-js'
 
