@@ -46,7 +46,7 @@ In our daily experience we go through time and we have a `state` at each moment 
 
 ### Back Propagation Training Using The Gradient Descent Algorithm
  
-Back propagation is a machine learning algorithm. The algorithm's objective is to find the optimal values for $\hat W$ that will yield expected outputs $\hat P_{o}$ in $\hat N$ through a training process. The algorithm's steps are:
+Back propagation is the most widely used machine learning algorithm. The algorithm's objective is to find the optimal values for $\hat W$ that will yield expected outputs $\hat P_{o}$ in $\hat N$ through a training process. The algorithm's steps are:
 
 1. Identify the unique set of elements in a training set representing the expected labeled output call it $\hat P'_{o}$.
 2. Generate an initial set of random numbers corresponding to the number of perceptrons in $L_{i}$ in the range $0 \geq w \leq 1$ and use them to construct $\hat W_{n}$ the tensor used to invoke $P$ for every perceptron in $\hat L_{i}$.
