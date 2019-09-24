@@ -75,7 +75,7 @@ Imagine we have a set of data representing the horse power <img src="/tex/47ac0d
 
 ## Conclusion
 
-Neural networks are a way to universally model functions. When a neural network is trained it becomes a function specific to the training domain. After training the acquired knowledge can be preserved by serializing <img src="/tex/2d7f7eff3be2bb586da23bea4938b2c7.svg?invert_in_darkmode&sanitize=true" align=middle width=17.80826024999999pt height=31.141535699999984pt/>, associated biases, and all the hyper parameters used during training. When utilizing the neural network for regression, predictions, or classification the activation values come form the input provided and the wights are not changed. The activation values flow forward from the input layer to the output layer. The resulting kernel of knowledge is very tiny in comparison to the training data and could be used almost anywhere including a web browser. Is as simple as using your AI framework of choice to instantiate <img src="/tex/f9c4988898e7f532b9f826a75014ed3c.svg?invert_in_darkmode&sanitize=true" align=middle width=14.99998994999999pt height=22.465723500000017pt/> by deserializing <img src="/tex/ea1d2cf825c587ad25ff9ce69ddfd3e2.svg?invert_in_darkmode&sanitize=true" align=middle width=14.99998994999999pt height=31.141535699999984pt/> and giving it an input, then you get your lovely output like magic. 
+Neural networks are a way to universally model functions. The reason why activation functions like <img src="/tex/8cda31ed38c6d59d14ebefa440099572.svg?invert_in_darkmode&sanitize=true" align=middle width=9.98290094999999pt height=14.15524440000002pt/> or <img src="/tex/849b156c7bf7750a474b6d6957e639c9.svg?invert_in_darkmode&sanitize=true" align=middle width=33.96324194999999pt height=22.831056599999986pt/> are used is to introduce a nonlinearity because the majority of relation ships are nonlinear. When a neural network is trained it becomes a function specific to the training domain. After training the acquired knowledge can be preserved by serializing <img src="/tex/2d7f7eff3be2bb586da23bea4938b2c7.svg?invert_in_darkmode&sanitize=true" align=middle width=17.80826024999999pt height=31.141535699999984pt/>, associated biases, and all the hyper parameters used during training. The resulting kernel of knowledge is very tiny in comparison to the training data and could be used almost anywhere including a web browser. When utilizing the neural network for regression, predictions, or classification the activation values come form the input provided and the wights are not changed. The activation values flow forward from the input layer to the output layer.
 
 ## Examples
 
@@ -90,5 +90,4 @@ In the [examples](https://github.com/geosp/hello_brain/tree/master/src/examples)
 5. [Lodash](https://lodash.com/docs)
 6. [Lodash FP](https://github.com/lodash/lodash/wiki/FP-Guide)
 7. [futil-js](https://github.com/smartprocure/futil-js)
-5. [Brain.JS](https://brain.js.org) 
-6. [Point-Free Programming](https://simonsmith.io/dipping-a-toe-into-functional-js-with-lodash-fp)
+8. [Point-Free Programming](https://simonsmith.io/dipping-a-toe-into-functional-js-with-lodash-fp)
