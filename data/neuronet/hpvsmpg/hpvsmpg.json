@@ -1,1 +1,37 @@
-{"sizes":[1,2,1],"layers":[{"hp":{}},{"0":{"bias":-1.0720361471176147,"weights":{"hp":4.647534370422363}},"1":{"bias":-0.48118290305137634,"weights":{"hp":1.2161996364593506}}},{"mpg":{"bias":2.113804817199707,"weights":{"0":-4.260403156280518,"1":-0.6679431796073914}}}],"outputLookup":true,"inputLookup":true,"activation":"sigmoid","trainOpts":{"iterations":20000,"errorThresh":0.0138,"log":false,"logPeriod":10,"learningRate":0.3,"momentum":0.1,"callbackPeriod":1,"beta1":0.9,"beta2":0.999,"epsilon":1e-8}}
+{
+  "sizes": [1, 2, 1],
+  "layers": [
+    { "hp": {} },
+    {
+      "0": {
+        "bias": -1.0720361471176147,
+        "weights": { "hp": 4.647534370422363 }
+      },
+      "1": {
+        "bias": -0.48118290305137634,
+        "weights": { "hp": 1.2161996364593506 }
+      }
+    },
+    {
+      "mpg": {
+        "bias": 2.113804817199707,
+        "weights": { "0": -4.260403156280518, "1": -0.6679431796073914 }
+      }
+    }
+  ],
+  "outputLookup": true,
+  "inputLookup": true,
+  "activation": "sigmoid",
+  "trainOpts": {
+    "iterations": 20000,
+    "errorThresh": 0.0138,
+    "log": false,
+    "logPeriod": 10,
+    "learningRate": 0.3,
+    "momentum": 0.1,
+    "callbackPeriod": 1,
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "epsilon": 1e-8
+  }
+}
