@@ -4,6 +4,7 @@ import F from 'futil-js'
 
 //Introducing a nonlinearity to increase the range from linear to nonlinear functions.
 export let sigmoid = x => 1 / (1 + Math.pow(Math.E, -x))
+export let leakyRelu = x => x > 0 ? x: 0.01 * x
 
 // Encoding knowledge into functions or layers through which information flows.
 export let pointfreePerceptron = (
