@@ -13,7 +13,7 @@ export let layer = ({
           p.init(size)
         }, layer.perceptrons)
       },
-      serialize: () => JSON.stringify(perceptron)
+      serialize: () => JSON.stringify(layer.perceptrons)
     }
     return layer
   }

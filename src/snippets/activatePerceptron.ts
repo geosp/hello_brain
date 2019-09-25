@@ -1,5 +1,6 @@
 import _ from 'lodash/fp'
-import {perceptron, layer, arrayGenerator} from './perceptron'
+import {perceptron, layer } from './neuralnetwork'
+import { arrayGenerator } from './neuralnetwork/math'
 
 let P = perceptron()
 P.init(4)
@@ -15,4 +16,4 @@ let L1 = layer({perceptrons: [P]})
 console.log({P: L1.perceptrons[0]})
 let L2 = layer()
 L2.init({count: 4, size: 3, nonlinearity: 'leakyRelu' })
-console.log({L2: JSON.stringify(L2)})
+console.log({L2: L2.serialize()})
