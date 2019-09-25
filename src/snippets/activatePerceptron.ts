@@ -1,12 +1,18 @@
 import _ from 'lodash/fp'
-import {pointfreePerceptron, leakyRelu} from './perceptron'
+import {perceptron, layer, arrayGenerator} from './perceptron'
 
-let bias = 2
-let randomGenerator = () => _.times(Math.random,4)
-let a = randomGenerator() // Activation values.
-let w = randomGenerator() // Weights
-let P = pointfreePerceptron(a, bias) // Default perceptron with sigma
-let tanhP = pointfreePerceptron(a, 2, Math.tanh) //Hyperbolic tangent perceptron
-let leakyReluP = pointfreePerceptron(a, 2, leakyRelu) //Hyperbolic tangent perceptron
+let P = perceptron()
+P.init(4)
+console.log({perceptron: P, potential: P.activate()})
+// Change activation function
+P.nonlinearity = 'leakyRelu'
+console.log({perceptron: P, potential: P.activate()})
+// Update weights
+P.weights = arrayGenerator(4)
+console.log({perceptron: P, potential: P.activate()})
 
-console.log({ sigma_potential: P(w),  tanh_potential: tanhP(w), leaky_relu: leakyReluP(w) })
+let L1 = layer({perceptrons: [P]})
+console.log({P: L1.perceptrons[0]})
+let L2 = layer()
+L2.init({count: 4, size: 3, nonlinearity: 'leakyRelu' })
+console.log({L2: JSON.stringify(L2)})
