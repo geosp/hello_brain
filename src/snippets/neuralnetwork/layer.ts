@@ -1,6 +1,6 @@
 import _ from 'lodash/fp'
-import { perceptron, supportedActivationFunctions } from './perceptron'
-
+import { perceptron } from './perceptron'
+import { supportedActivationFunctions } from './math'
 export let layer = ({
     perceptrons = [perceptron()]
   } = {}) => {

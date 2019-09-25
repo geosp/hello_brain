@@ -1,10 +1,7 @@
 // Functional is declarative
 import _ from 'lodash/fp'
 import F from 'futil-js'
-import { activationFunctions, arrayGenerator } from './math'
-
-//Introducing a nonlinearity to increase the range from linear to nonlinear functions.
-export type supportedActivationFunctions = 'sigmoid' | 'leakyRelu'
+import { activationFunctions, arrayGenerator, supportedActivationFunctions } from './math'
 
 // Encoding knowledge into functions or layers through which information flows.
 export let perceptron = ({

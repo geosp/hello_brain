@@ -6,7 +6,7 @@ let P = perceptron()
 P.init(4)
 console.log({perceptron: P, potential: P.activate()})
 // Change activation function
-P.nonlinearity = 'leakyRelu'
+P.nonlinearity = 'tanh'
 console.log({perceptron: P, potential: P.activate()})
 // Update weights
 P.weights = arrayGenerator(4)
