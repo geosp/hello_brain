@@ -9,6 +9,7 @@ import {
   activationFunctionDerivatives,
 } from './math'
 import * as tf from '@tensorflow/tfjs-node'
+import { sum } from '@tensorflow/tfjs-core/dist/util'
 
 // Encoding knowledge into functions or layers through which information flows.
 export let perceptron = ({
@@ -27,9 +28,9 @@ export let perceptron = ({
     },
     activate: () =>
       _.flow(
-        x => x.dataSync(),
-        _.first,
-        (sum: number) => sum + perceptron.bias,
+        result => tf.sum(result),
+        // @ts-ignore
+        sum => sum.dataSync()[0] + perceptron.bias,
         activationFunctions[perceptron.nonlinearity]
       )(tf.mul(tf.tensor(perceptron.weights), tf.tensor(perceptron.activations))),
     activtionDerivative: ({ weight, error }: { weight: number; error: number }): number =>

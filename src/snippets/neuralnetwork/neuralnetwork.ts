@@ -55,26 +55,20 @@ export let neuralNetwork = ({
             },
             [...neuralNetwork.hiddenLayers, neuralNetwork.outputLayer]
           )
-
-          // console.log({predicted, expected})
+          // Propagate backwards.
+          _.each(l => {
             // Calculate error.
-            let errors = tf.losses
+              let errors = tf.losses
               .meanSquaredError(tf.tensor(predicted), tf.tensor(expected))
               .dataSync()
-            let totalError = _.first(tf.sum(errors).dataSync()) || 0
-            console.log({totalError: totalError, x: meanSquaredError({expected, predicted})})
-            
+            let totalError = tf.sum(errors).dataSync()[0]
             let deltaErrors = _.map(error => {
               return activationFunctionDerivatives[nonlinearity]({
                 value: error,
                 error: totalError,
               })
             }, errors)
-
-          // Propagate backwards.
-          _.each(l => {
-            console.log({totalError, deltaErrors})
-            // predicted = l.predict()
+            predicted = l.predict()
             _.each(p => {
               //@ts-ignore
               let deltas = F.mapIndexed(
@@ -90,7 +84,7 @@ export let neuralNetwork = ({
                 p.bias = p.bias - adjustment
               }, p.weights)
             }, l.perceptrons)
-            // expected = l.predict()
+            expected = l.predict()
           }, [...neuralNetwork.hiddenLayers, neuralNetwork.outputLayer].reverse())
         }, data)
         iterations++
