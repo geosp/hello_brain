@@ -32,7 +32,7 @@ export let perceptron = ({
         (sum: number) => sum + perceptron.bias,
         activationFunctions[perceptron.nonlinearity]
       )(tf.mul(tf.tensor(perceptron.weights), tf.tensor(perceptron.activations))),
-    activteDerivative: ({ weight, error }: { weight: number; error: number }): number =>
+    activtionDerivative: ({ weight, error }: { weight: number; error: number }): number =>
       activationFunctionDerivatives[nonlinearity]({value: weight, error}),
     serialize: () => JSON.stringify(perceptron),
   }

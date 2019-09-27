@@ -78,7 +78,7 @@ export let neuralNetwork = ({
             _.each(p => {
               //@ts-ignore
               let deltas = F.mapIndexed(
-                (weight, j) => p.activteDerivative({ weight, error: deltaErrors[j] }),
+                (weight, j) => p.activtionDerivative({ weight, error: deltaErrors[j] }),
                 p.weights
               )
               // console.log({deltas})
