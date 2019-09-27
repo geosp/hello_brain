@@ -4,6 +4,7 @@ import { arrayGenerator } from './neuralnetwork/math'
 
 let P = perceptron()
 P.init(4)
+P.activations = arrayGenerator(4)
 console.log({perceptron: P, potential: P.activate()})
 // Change activation function
 P.nonlinearity = 'tanh'

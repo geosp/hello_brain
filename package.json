@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.6.0",
+    "@tensorflow/tfjs-node": "^1.2.9",
     "@types/chalk": "^2.2.0",
     "@types/moment": "^2.13.0",
     "brain.js": "^2.0.0-alpha.9",
@@ -44,6 +45,7 @@
   "prettier": {
     "semi": false,
     "singleQuote": true,
-    "trailingComma": "es5"
+    "trailingComma": "es5",
+    "printWidth": 100
   }
 }

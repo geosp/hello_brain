@@ -1,13 +1,20 @@
 // Functional is declarative
 import _ from 'lodash/fp'
 import F from 'futil-js'
-import { activationFunctions, arrayGenerator, supportedActivationFunctions } from './math'
+import {
+  activationFunctions,
+  logicRandom,
+  arrayGenerator,
+  supportedActivationFunctions,
+  activationFunctionDerivatives,
+} from './math'
+import * as tf from '@tensorflow/tfjs-node'
 
 // Encoding knowledge into functions or layers through which information flows.
 export let perceptron = ({
   activations = [] as number[],
   weights = [] as number[],
-  bias = Math.random(),
+  bias = logicRandom(),
   nonlinearity = 'sigmoid' as supportedActivationFunctions,
 } = {}) => {
   let perceptron = {
@@ -16,23 +23,18 @@ export let perceptron = ({
     activations,
     nonlinearity,
     init: (size: number) => {
-      // @ts-ignore
-      ;[perceptron.weights, perceptron.activations, perceptron.bias] = [
-        ..._.times(() => arrayGenerator(size), 2),
-        Math.random(),
-      ]
+      perceptron.weights = arrayGenerator(size)
     },
-    activate: (): number =>
-      // @ts-ignore
+    activate: () =>
       _.flow(
-        F.mapIndexed((a, i) => perceptron.weights[i] * a),
-        // @ts-ignore
-        _.reduce((sum, product) => sum + product, 0),
-        sum => sum + perceptron.bias, // This is a function in linear form y = ax + b
-        activationFunctions[perceptron.nonlinearity] // This makes the function nonlinear.
-      )(perceptron.activations),
-    serialize: () => JSON.stringify(perceptron)
+        x => x.dataSync(),
+        _.first,
+        (sum: number) => sum + perceptron.bias,
+        activationFunctions[perceptron.nonlinearity]
+      )(tf.mul(tf.tensor(perceptron.weights), tf.tensor(perceptron.activations))),
+    activteDerivative: ({ weight, error }: { weight: number; error: number }): number =>
+      activationFunctionDerivatives[nonlinearity]({value: weight, error}),
+    serialize: () => JSON.stringify(perceptron),
   }
   return perceptron
 }
-
