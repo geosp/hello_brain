@@ -1,10 +1,11 @@
 import _ from 'lodash/fp'
 import { perceptron } from './perceptron'
 import { supportedActivationFunctions } from './math'
-export let layer = ({ perceptrons = [perceptron()], label = '' } = {}) => {
+export let layer = ({ perceptrons = [perceptron()] } = {}) => {
   let layer = {
     perceptrons,
-    label,
+    signals: [] as number[],
+    type: '',
     init: ({ count = 1, size = 1, nonlinearity = 'sigmoid' as supportedActivationFunctions }) => {
       layer.perceptrons = _.times(() => perceptron(), count)
       _.each(p => {
@@ -12,18 +13,17 @@ export let layer = ({ perceptrons = [perceptron()], label = '' } = {}) => {
         p.init(size)
       }, layer.perceptrons)
     },
-    predict: (activations = [] as number[]) =>
-      _.reduce(
-        (potentials, p) => {
-          if(_.size(activations))
+    predict: (activations = [] as number[]) => {
+      layer.signals = _.map(
+        (p) => {
+          if (_.size(activations))
             p.activations = activations
-          // @ts-ignore
-          potentials.push(p.activate())
-          return potentials
+          return p.activate()
         },
-        [],
         layer.perceptrons
-      ),
+      )
+      return layer.signals
+    },
     serialize: () => JSON.stringify(layer.perceptrons),
   }
   return layer

@@ -1,7 +1,9 @@
 import _ from 'lodash/fp'
 import F from 'futil-js'
 import { layer } from './'
-import { supportedActivationFunctions, activationFunctionDerivatives, meanSquaredError } from './math'
+import {
+  supportedActivationFunctions,
+} from './math'
 import * as tf from '@tensorflow/tfjs-node'
 
 export let neuralNetwork = ({
@@ -21,15 +23,13 @@ export let neuralNetwork = ({
         _.first,
         _.get('input.length')
       )(data)
-      let k = 0
       neuralNetwork.hiddenLayers = _.map(count => {
         let hiddenLayer = layer()
+        hiddenLayer.type = 'hidden'
         hiddenLayer.init({ count, size, nonlinearity })
         size = count
-        hiddenLayer.label = `H${k}`
         return hiddenLayer
       }, layers)
-      neuralNetwork.outputLayer.label = 'O'
       neuralNetwork.outputLayer.init({
         // @ts-ignore
         count: _.flow(
@@ -42,6 +42,7 @@ export let neuralNetwork = ({
         )(neuralNetwork.hiddenLayers),
         nonlinearity,
       })
+      neuralNetwork.outputLayer.type = 'output'
       // Start training.
       let iterations = 0
       do {
@@ -56,35 +57,14 @@ export let neuralNetwork = ({
             [...neuralNetwork.hiddenLayers, neuralNetwork.outputLayer]
           )
           // Propagate backwards.
-          _.each(l => {
+          _.each(l => {           
             // Calculate error.
-              let errors = tf.losses
-              .meanSquaredError(tf.tensor(predicted), tf.tensor(expected))
-              .dataSync()
-            let totalError = tf.sum(errors).dataSync()[0]
-            let deltaErrors = _.map(error => {
-              return activationFunctionDerivatives[nonlinearity]({
-                value: error,
-                error: totalError,
-              })
-            }, errors)
-            predicted = l.predict()
-            _.each(p => {
-              //@ts-ignore
-              let deltas = F.mapIndexed(
-                (weight, j) => p.activtionDerivative({ weight, error: deltaErrors[j] }),
-                p.weights
-              )
-              // console.log({deltas})
-              // @ts-ignore
+            let mse = tf.losses.meanSquaredError(tf.tensor(expected), tf.tensor(predicted))
+            // Update weights
+            F.eachIndexed((p,i) => {
               F.eachIndexed((weight, j) => {
-                let adjustment = options.learningRate * deltas[j]
-                p.weights[j] = weight - adjustment
-                console.log({weight, b: p.bias})
-                p.bias = p.bias - adjustment
               }, p.weights)
             }, l.perceptrons)
-            expected = l.predict()
           }, [...neuralNetwork.hiddenLayers, neuralNetwork.outputLayer].reverse())
         }, data)
         iterations++

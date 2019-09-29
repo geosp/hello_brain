@@ -1,7 +1,7 @@
 import _ from 'lodash/fp'
 import F from 'futil-js'
 
-export type valueWithError = { value: number, error?: number }
+type valueWithError = { value: number, error?: number }
 export let logicRandom = () => 2 * Math.random() - 1
 export let arrayGenerator = (size: number) => _.times(logicRandom, size)
 //Introducing a nonlinearity to increase the range from linear to nonlinear functions.
