@@ -1,13 +1,13 @@
 import _ from 'lodash/fp'
 import F from 'futil-js'
-import { perceptron } from './neuralnetwork'
+import { neuron } from './neuralnetwork'
 import { meanSquaredError } from './neuralnetwork/math'
 import { arrayGenerator, logicRandom } from './neuralnetwork/math'
 
 let numberofActivationValues = 4
 let bias = logicRandom()
 let [P1, P2, P3, P4] = _.times(
-x => perceptron({activations: arrayGenerator(numberofActivationValues), bias}),
+x => neuron({activations: arrayGenerator(numberofActivationValues), bias}),
 numberofActivationValues
 )
 let initAndActivate = p => {

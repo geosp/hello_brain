@@ -38,7 +38,7 @@ export let neuralNetwork = ({
         )(data),
         size: _.flow(
           _.last,
-          _.get('perceptrons.length')
+          _.get('neurons.length')
         )(neuralNetwork.hiddenLayers),
         nonlinearity,
       })
@@ -64,7 +64,7 @@ export let neuralNetwork = ({
             F.eachIndexed((p,i) => {
               F.eachIndexed((weight, j) => {
               }, p.weights)
-            }, l.perceptrons)
+            }, l.neurons)
           }, [...neuralNetwork.hiddenLayers, neuralNetwork.outputLayer].reverse())
         }, data)
         iterations++

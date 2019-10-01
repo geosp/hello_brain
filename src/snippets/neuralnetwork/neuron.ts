@@ -12,7 +12,7 @@ import * as tf from '@tensorflow/tfjs-node'
 import { sum } from '@tensorflow/tfjs-core/dist/util'
 
 // Encoding knowledge into functions or layers through which information flows.
-export let perceptron = ({
+export let neuron = ({
   activations = [] as number[],
   weights = [] as number[],
   bias = logicRandom(),
