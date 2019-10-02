@@ -11,4 +11,4 @@
     '      #'
 )
 
-console.log({vectorized: JSON.stringify(four)})
+console.log({input: JSON.stringify(four), output: JSON.stringify([0, 0, 0, 0, 1, 0, 0, 0, 0, 0])})

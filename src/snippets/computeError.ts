@@ -2,10 +2,10 @@ import _ from 'lodash/fp'
 import F from 'futil-js'
 import { neuron } from './neuralnetwork'
 import { meanSquaredError } from './neuralnetwork/math'
-import { arrayGenerator, logicRandom } from './neuralnetwork/math'
+import { arrayGenerator, random } from './neuralnetwork/math'
 
 let numberofActivationValues = 4
-let bias = logicRandom()
+let bias = random()
 let [P1, P2, P3, P4] = _.times(
 x => neuron({activations: arrayGenerator(numberofActivationValues), bias}),
 numberofActivationValues

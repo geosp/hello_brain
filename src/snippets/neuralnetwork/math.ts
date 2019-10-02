@@ -2,8 +2,8 @@ import _ from 'lodash/fp'
 import F from 'futil-js'
 
 type valueWithError = { value: number, error?: number }
-export let logicRandom = () => 2 * Math.random() - 1
-export let arrayGenerator = (size: number) => _.times(logicRandom, size)
+export let random = () => 2 * Math.random() - 1
+export let arrayGenerator = (size: number) => _.times(random, size)
 //Introducing a nonlinearity to increase the range from linear to nonlinear functions.
 export type supportedActivationFunctions = 'sigmoid' | 'leakyRelu' | 'tanh'
 export let activationFunctions = {

@@ -3,7 +3,7 @@ import _ from 'lodash/fp'
 import F from 'futil-js'
 import {
   activationFunctions,
-  logicRandom,
+  random,
   arrayGenerator,
   supportedActivationFunctions,
   activationFunctionDerivatives,
@@ -15,30 +15,30 @@ import { sum } from '@tensorflow/tfjs-core/dist/util'
 export let neuron = ({
   activations = [] as number[],
   weights = [] as number[],
-  bias = logicRandom(),
+  bias = random(),
   nonlinearity = 'sigmoid' as supportedActivationFunctions,
 } = {}) => {
-  let perceptron = {
+  let neuron = {
     weights,
     bias,
     activations,
     nonlinearity,
     signal: 0,
     init: (size: number) => {
-      perceptron.weights = arrayGenerator(size)
+      neuron.weights = arrayGenerator(size)
     },
     activate: () => {
-      perceptron.signal = _.flow(
+      neuron.signal = _.flow(
         result => tf.sum(result),
         // @ts-ignore
-        sum => sum.dataSync()[0] + perceptron.bias,
-        activationFunctions[perceptron.nonlinearity]
-      )(tf.mul(tf.tensor(perceptron.weights), tf.tensor(perceptron.activations)))
-      return perceptron.signal
+        sum => sum.dataSync()[0] + neuron.bias,
+        activationFunctions[neuron.nonlinearity]
+      )(tf.mul(tf.tensor(neuron.weights), tf.tensor(neuron.activations)))
+      return neuron.signal
     },
     activtionDerivative: ({ weight, error }: { weight: number; error: number }): number =>
       activationFunctionDerivatives[nonlinearity]({value: weight, error}),
-    serialize: () => JSON.stringify(perceptron),
+    serialize: () => JSON.stringify(neuron),
   }
-  return perceptron
+  return neuron
 }

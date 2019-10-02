@@ -8,10 +8,10 @@ P.activations = arrayGenerator(4)
 console.log({neuron: P, potential: P.activate()})
 // Change activation function
 P.nonlinearity = 'tanh'
-console.log({perceptron: P, potential: P.activate()})
+console.log({neuron: P, potential: P.activate()})
 // Update weights
 P.weights = arrayGenerator(4)
-console.log({perceptron: P, potential: P.activate()})
+console.log({neuron: P, potential: P.activate()})
 
 let L1 = layer({neurons: [P]})
 console.log({P: L1.neurons[0]})
