@@ -19,7 +19,7 @@ In conclusion the implementation of an Artificial Neuron is the function $P(\hat
 
 ## Neural Networks
 
-A `neural network` is a graph of associated `Artificial Neurons`. `Neural networks` are composed of `neural network layers`. A `neural network layer` is a tensor of `Artificial Neurons`. The `Artificial Neurons` in a `neural network layer` are connected to each other because they are components of a tensor. We can define layer n as $\hat{L}_{n} = [P_{1}, P_{2}, P_{3}, ... ,P_{n}]$. Neural networks have three `layer types input, hidden, and output`. A neural network  may have multiple hidden layers but only one input and output layers. Consider a neural network consisting of the fallowing layers:
+A `neural network` is a computational graph of `Artificial Neurons`. `Neural networks` are composed of `neural network layers`. A `neural network layer` is a tensor of `Artificial Neurons`. The `Artificial Neurons` in a `neural network layer` are connected to each other because they are components of a tensor. We can define layer n as $\hat{L}_{n} = [P_{1}, P_{2}, P_{3}, ... ,P_{n}]$. Neural networks have three `layer types input, hidden, and output`. A neural network  may have multiple hidden layers but only one input and output layers. Consider a neural network consisting of the fallowing layers:
 
 <div align="center">
 <div>
