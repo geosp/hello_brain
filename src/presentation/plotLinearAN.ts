@@ -18,6 +18,7 @@ F.eachIndexed((bias, i) => {
 }, _.times(random, 10))
 
 stack(lines, {
+  title: 'Linear 2d',
   width: 1000,
   height: 1000,
 })
