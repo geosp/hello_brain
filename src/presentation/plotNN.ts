@@ -1,5 +1,4 @@
 import _ from 'lodash/fp'
-import F from 'futil-js'
 import { plot, stack } from 'nodeplotlib'
 import { random, activationFunctions } from '../snippets/neuralnetwork/math'
 import * as tf from '@tensorflow/tfjs-node'
