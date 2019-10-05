@@ -1,35 +1,15 @@
 import _ from 'lodash/fp'
 import { plot, stack } from 'nodeplotlib'
-import F from 'futil-js'
 import * as tf from '@tensorflow/tfjs-node'
+import { meshGrid } from './math'
 
 let size = 50
-let meshGrid = ({ xRange, yRange }) => {
-  let x = _.reduce(
-    mesh => {
-      // @ts-ignore
-      mesh.push(xRange)
-      return mesh
-    },
-    [],
-    _.times(_.identity, size + 1)
-  )
-  let y = _.reduce(
-    mesh => {
-      // @ts-ignore
-      mesh.push(yRange)
-      return mesh
-    },
-    [],
-    _.times(_.identity, size)
-  )
-  return { X: tf.stack(x), Y: tf.stack(y).transpose() }
-}
 let x = tf.linspace(-10, 10, size).arraySync()
 let y = tf.linspace(-10, 10, size + 1).arraySync()
 let { X, Y } = meshGrid({ xRange: x, yRange: y })
 let paraboloid = tf.add(tf.pow(X, 2).div(2), tf.pow(Y, 2).div(4))
 let plane = tf.add(tf.add(-0.84, X), tf.add(-0.84, Y))
+
 stack(
   [
     {
