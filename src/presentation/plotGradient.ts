@@ -1,7 +1,7 @@
 import _ from 'lodash/fp'
 import { plot, stack } from 'nodeplotlib'
 import * as tf from '@tensorflow/tfjs-node'
-import { meshGrid } from './math'
+import { meshGrid } from '../snippets/neuralnetwork/math'
 
 let size = 50
 let x = tf.linspace(-10, 10, size).arraySync()

@@ -1,5 +1,6 @@
 import _ from 'lodash/fp'
 import F from 'futil-js'
+import * as tf from '@tensorflow/tfjs-node'
 
 type valueWithError = { value: number, error?: number }
 export let random = () => 2 * Math.random() - 1
@@ -26,3 +27,25 @@ export let meanSquaredError = ({ predicted = [] as number[], expected = [] as nu
   )(expected)
 
   export let toNumber = (tensor) : number  => tensor.dataSync()[0]
+
+  export let meshGrid = ({ xRange, yRange }) => {
+    let x = _.reduce(
+      mesh => {
+        // @ts-ignore
+        mesh.push(xRange)
+        return mesh
+      },
+      [],
+      _.times(_.identity, yRange.length)
+    )
+    let y = _.reduce(
+      mesh => {
+        // @ts-ignore
+        mesh.push(yRange)
+        return mesh
+      },
+      [],
+      _.times(_.identity, xRange.length)
+    )
+    return { X: tf.stack(x), Y: tf.stack(y).transpose() }
+  }
