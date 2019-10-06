@@ -1,24 +1,22 @@
 import _ from 'lodash/fp'
 import { plot, stack } from 'nodeplotlib'
-import { random, activationFunctions } from '../snippets/neuralnetwork/math'
+import { toNumber } from '../snippets/neuralnetwork/math'
 import * as tf from '@tensorflow/tfjs-node'
 
 let neuronCount = 200
 let neuronsPerLayer = 20
 let terms = 4
-let generateData = () => _.times(w => random(), terms)
 let AN = () => {
-  let bias = random()
+  let bias = tf.randomUniform([1])
   return _.flow(
-    ({ weights, activations }) => tf.mul(tf.tensor(weights), tf.tensor(activations)),
+    ({ weights, activations }) => tf.mul(weights, activations),
     tf.sum,
-    sum => (sum.dataSync()[0] += bias),
-    activationFunctions.sigmoid
-  )({ weights: generateData(), activations: generateData() })
+    sum => tf.add(sum, bias),
+    tf.sigmoid,
+    toNumber
+  )({ weights: tf.randomUniform([terms]), activations: tf.randomUniform([terms])})
 }
-
-let layers = _.flow(_.chunk(neuronsPerLayer))(_.times(AN, neuronCount))
-
+let layers = _.chunk(neuronsPerLayer, _.times(AN, neuronCount))
 stack(
   [
     {

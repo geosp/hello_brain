@@ -24,3 +24,5 @@ export let meanSquaredError = ({ predicted = [] as number[], expected = [] as nu
     ),
     (sum: number) => sum / expected.length
   )(expected)
+
+  export let toNumber = (tensor) : number  => tensor.dataSync()[0]

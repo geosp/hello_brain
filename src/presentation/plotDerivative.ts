@@ -11,7 +11,11 @@ let tangent = tangentX => _.map(x => dy_dx(tangentX) * x + f(tangentX) - dy_dx(t
 stack(
   [
     { x, y, name: 'parabola' },
+    { x, y: tangent(4), name: `tangent line slope: ${dy_dx(4)}` },
     { x, y: tangent(3), name: `tangent line slope: ${dy_dx(3)}` },
+    { x, y: tangent(0), name: `minimun slope: ${dy_dx(0)}` },
+    { x, y: tangent(-3), name: `tangent line slope: ${dy_dx(-3)}` },
+    { x, y: tangent(-4), name: `tangent line slope: ${dy_dx(-4)}` },
   ],
   {
     title: 'Derivative',
