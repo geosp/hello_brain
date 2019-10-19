@@ -2,7 +2,7 @@ import brain from 'brain.js'
 import { train } from '../core/train'
 import _ from 'lodash'
 
-export default ({retrain, name}) => {
+export default ({ retrain, name }) => {
   let preprocessor = data =>
     _.map(data.colors, (color, idx) => ({
       input: color,
@@ -20,11 +20,12 @@ export default ({retrain, name}) => {
       name,
       retrain,
       preprocessor,
-      trainingSets: ['first']
+      trainingSets: ['first'],
+      svg: true,
     })
   )
   let colorInput = {
-    blue: 0.3
+    blue: 0.3,
   }
   console.log({ colorInput, colorOutput: neuroColors.run(colorInput) })
 }

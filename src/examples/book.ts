@@ -14,6 +14,7 @@ export default ({retrain, name}) => {
       name,
       retrain,
       trainingSets: ['first'],
+      svg: true,
     })
   )
   let bookInput = 'Jane saw seat'

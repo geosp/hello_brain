@@ -23,6 +23,7 @@ export default ({retrain, name}) => {
       retrain,
       trainingSets: ['first'],
       preprocessor,
+      svg: true,
     })
   )
   // Principle of representative values encoded as a vector is applied.

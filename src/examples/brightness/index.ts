@@ -27,6 +27,7 @@ export default ({retrain, name}) => {
       retrain,
       preprocessor,
       trainingSets: ['first'],
+      svg: true,
     })
   )
   // Generating colors based on brightness prefferences.

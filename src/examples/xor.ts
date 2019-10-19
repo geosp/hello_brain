@@ -13,7 +13,8 @@ export default ({retrain, name}) => {
       networkOptions,
       name,
       retrain,
-      trainingSets: ['first']
+      trainingSets: ['first'],
+      svg: true,
     })
   )
   let xorInput = [1, 1]

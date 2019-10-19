@@ -16,7 +16,8 @@ export default ({retrain, name}) => {
       trainingOptions,
       name,
       retrain,
-      trainingSets: ['addition']
+      trainingSets: ['addition'],
+      svg: true,
     })
   )
   let additionInput = '1+1='
