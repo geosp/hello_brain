@@ -22,7 +22,7 @@
     "brain.js": "^2.0.0-alpha.9",
     "chalk": "^2.4.2",
     "futil-js": "^1.62.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "moment": "^2.24.0",
     "nodeplotlib": "^0.6.4"
   },
