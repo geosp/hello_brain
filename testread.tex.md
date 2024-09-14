@@ -2,57 +2,45 @@
 
 ## Artificial Neurons
 
-The basic unit of computation in a neural network is the **Artificial Neuron**. An artificial neuron receives inputs (activations) from the previous layer and produces an output activation value. For convenience, the activation value is kept between \(0\) and \(1\). If the activation \(a = 1\), the neuron is fully activated; if \(a = 0\), the neuron is inactive.
+The basic unit of computation in a neural network is the **Artificial Neuron**. An artificial neuron receives inputs (activations) from the previous layer and produces an output activation value. For convenience, the activation value is kept between $0$ and $1$. If the activation $a = 1$, the neuron is fully activated; if $a = 0$, the neuron is inactive.
 
-We implement the artificial neuron as a function \(P\) that computes an output activation based on input activations and associated weights. The inputs to the neuron are:
+We implement the artificial neuron as a function $P$ that computes an output activation based on input activations and associated weights. The components of the neuron are:
 
-- **Activation Values** (\(\hat{A}\)): An array of activations from the previous layer, \([a_1, a_2, a_3, \ldots, a_n]\).
-- **Weights** (\(\hat{W}\)): An array of weights associated with each input activation, \([w_1, w_2, w_3, \ldots, w_n]\).
-- **Bias** (\(b\)): A value that shifts the activation function to control the neuron's firing threshold.
+- **Activation Values** ($\hat{A}$): An array of activations from the previous layer, $\hat{A} = [a_1, a_2, a_3, \ldots, a_n]$.
+- **Weights** ($\hat{W}$): An array of weights associated with each input activation, $\hat{W} = [w_1, w_2, w_3, \ldots, w_n]$.
+- **Bias** ($b$): A value that shifts the activation function to control the neuron's firing threshold.
 
 **Computation Steps:**
 
-1. **Element-wise Multiplication**: Multiply each activation by its corresponding weight:
+1. **Element-wise Multiplication**: Multiply each activation by its corresponding weight to get $\hat{C}$:
 
-   \[
-   \hat{C} = [a_1 w_1, a_2 w_2, a_3 w_3, \ldots, a_n w_n]
-   \]
+   $\hat{C} = [a_1 w_1, a_2 w_2, a_3 w_3, \ldots, a_n w_n]$
 
-2. **Weighted Sum**: Sum all the products to compute the neuron's input signal:
+2. **Weighted Sum**: Sum all the products to compute the neuron's input signal $S$:
 
-   \[
-   S = \sum_{i=1}^{n} a_i w_i
-   \]
+   $S = \sum_{i=1}^{n} a_i w_i$
 
-3. **Add Bias**: Incorporate the bias into the weighted sum:
+3. **Add Bias**: Incorporate the bias into the weighted sum to get $z$:
 
-   \[
-   z = S + b
-   \]
+   $z = S + b$
 
-4. **Activation Function**: Apply an activation function to \(z\) to obtain the output activation \(a\):
+4. **Activation Function**: Apply an activation function to $z$ to obtain the output activation $a$:
 
-   \[
-   a = \sigma(z)
-   \]
+   $a = \sigma(z)$
 
 **Activation Function Example:**
 
 One commonly used activation function is the **sigmoid function**:
 
-\[
-\sigma(z) = \frac{1}{1 + e^{-z}}
-\]
+$\sigma(z) = \dfrac{1}{1 + e^{-z}}$
 
-This function maps any real-valued input to a value between \(0\) and \(1\).
+This function maps any real-valued input to a value between $0$ and $1$.
 
 **Final Neuron Function:**
 
 The artificial neuron is thus represented as:
 
-\[
-P(\hat{A}, \hat{W}, b) = \sigma\left(\sum_{i=1}^{n} a_i w_i + b\right)
-\]
+$P(\hat{A}, \hat{W}, b) = \sigma\left(\sum_{i=1}^{n} a_i w_i + b\right)$
 
 **Note:** In this context, tensors represent vectors (arrays) of activations and weights, and operations involve vector arithmetic.
 
@@ -68,55 +56,59 @@ Each neuron in a layer is connected to every neuron in the subsequent layer thro
 
 **Example Neural Network Structure:**
 
-- **Input Layer** (\(\hat{L}_i\)):
+- **Input Layer** ($\hat{L}_i$):
 
-  \[
-  \hat{L}_i = [P_{1i}]
-  \]
+  $\hat{L}_i = [P_{1i}]$
 
-- **Hidden Layer** (\(\hat{L}_{1h}\)):
+- **Hidden Layer** ($\hat{L}_{1h}$):
 
-  \[
-  \hat{L}_{1h} = [P_{1h}, P_{2h}]
-  \]
+  $\hat{L}_{1h} = [P_{1h}, P_{2h}]$
 
-- **Output Layer** (\(\hat{L}_o\)):
+- **Output Layer** ($\hat{L}_o$):
 
-  \[
-  \hat{L}_o = [P_{1o}]
-  \]
+  $\hat{L}_o = [P_{1o}]$
 
 **Neural Network Representation:**
 
 The entire network can be represented as:
 
-\[
-\hat{N} = [\hat{L}_i, \hat{L}_{1h}, \hat{L}_o]
-\]
+$\hat{N} = [\hat{L}_i, \hat{L}_{1h}, \hat{L}_o]$
 
 **Connections Between Layers:**
 
-- **Input to Hidden Layer**: The output activation from the input neuron \(P_{1i}\) becomes the input activation for each neuron in the hidden layer \(\hat{L}_{1h}\).
-- **Hidden to Output Layer**: The output activations from the hidden layer neurons \(P_{1h}\) and \(P_{2h}\) become the input activations for the output neuron \(P_{1o}\).
+- **Input to Hidden Layer**: The output activation from the input neuron $P_{1i}$ becomes the input activation for each neuron in the hidden layer $\hat{L}_{1h}$.
+
+  - Activation values for hidden layer neurons:
+
+    $\hat{A}_{h} = [a_{1h}, a_{2h}]$
+
+  - Weights for hidden layer neurons (from input neuron):
+
+    $\hat{W}_{h} = [w_{1h}, w_{2h}]$, where each $w_{jh}$ corresponds to the connection from $P_{1i}$ to $P_{jh}$.
+
+- **Hidden to Output Layer**: The output activations from the hidden layer neurons $P_{1h}$ and $P_{2h}$ become the input activations for the output neuron $P_{1o}$.
+
+  - Activation values for the output neuron:
+
+    $\hat{A}_{o} = [a_{1h}, a_{2h}]$
+
+  - Weights for the output neuron:
+
+    $\hat{W}_{o} = [w_{1o}, w_{2o}]$, where $w_{1o}$ connects $P_{1h}$ to $P_{1o}$, and $w_{2o}$ connects $P_{2h}$ to $P_{1o}$.
 
 **Computations in Neurons:**
 
-- **Hidden Layer Neurons** (\(P_{1h}\), \(P_{2h}\)):
+- **Hidden Layer Neurons** ($P_{1h}$, $P_{2h}$):
 
-  - Receive activations from the input layer.
-  - Compute their output activations using their weights and biases.
+  - Each computes its output activation:
 
-- **Output Layer Neuron** (\(P_{1o}\)):
+    $a_{jh} = \sigma(a_{1i} w_{jh} + b_{jh})$, for $j = 1, 2$
 
-  - Receives activations from the hidden layer neurons.
-  - Computes its output activation using its weights and bias:
+- **Output Layer Neuron** ($P_{1o}$):
 
-    \[
-    S_{1o} = a_{1h} w_{1o} + a_{2h} w_{2o} + b_{1o}
-    \]
-    \[
-    a_{1o} = \sigma(S_{1o})
-    \]
+  - Computes its output activation:
+
+    $a_{1o} = \sigma(a_{1h} w_{1o} + a_{2h} w_{2o} + b_{1o})$
 
 **Key Point:**
 
@@ -127,23 +119,19 @@ The entire network can be represented as:
 
 ### Introduction
 
-We define a **neural network function** \(N\) that maps input activations to output activations:
+We define a **neural network function** $N$ that maps input activations to output activations:
 
-\[
-N(\hat{L}_i) = \hat{L}_o
-\]
+$N(\hat{L}_i) = \hat{L}_o$
 
 Where:
 
-- \(\hat{L}_i\) is the input layer activations.
-- \(\hat{L}_o\) is the output layer activations.
-- The network includes \(n\) hidden layers \(\hat{L}_{1h}, \hat{L}_{2h}, \ldots, \hat{L}_{nh}\).
+- $\hat{L}_i$ is the input layer activations.
+- $\hat{L}_o$ is the output layer activations.
+- The network includes $n$ hidden layers $\hat{L}_{1h}, \hat{L}_{2h}, \ldots, \hat{L}_{nh}$.
 
 **Neural Network Representation:**
 
-\[
-\hat{N} = [\hat{L}_i, \hat{L}_{1h}, \hat{L}_{2h}, \ldots, \hat{L}_{nh}, \hat{L}_o]
-\]
+$\hat{N} = [\hat{L}_i, \hat{L}_{1h}, \hat{L}_{2h}, \ldots, \hat{L}_{nh}, \hat{L}_o]$
 
 We activate the network by feeding inputs and performing computations in a forward direction—this process is called **forward propagation**.
 
@@ -155,7 +143,7 @@ We activate the network by feeding inputs and performing computations in a forwa
 
 1. **Initialization:**
 
-   - Assign small random values to all weights \(\hat{W}\) and biases \(b\).
+   - Assign small random values to all weights $\hat{W}$ and biases $b$.
 
 2. **Training Loop:**
 
@@ -172,13 +160,11 @@ We activate the network by feeding inputs and performing computations in a forwa
 
           **Mean Squared Error (MSE):**
 
-          \[
-          E = \frac{1}{n} \sum_{i=1}^{n} (a_i' - a_i)^2
-          \]
+          $E = \dfrac{1}{n} \sum_{i=1}^{n} (a_i' - a_i)^2$
 
-          - \(a_i'\): Actual (target) output.
-          - \(a_i\): Predicted output.
-          - \(n\): Number of output neurons.
+          - $a_i'$: Actual (target) output.
+          - $a_i$: Predicted output.
+          - $n$: Number of output neurons.
 
      c. **Backpropagation:**
 
@@ -186,45 +172,40 @@ We activate the network by feeding inputs and performing computations in a forwa
 
           **Gradient Calculation:**
 
-          \[
-          \nabla E_w = \frac{\partial E}{\partial w}
-          \]
-          \[
-          \nabla E_b = \frac{\partial E}{\partial b}
-          \]
+          - For weights:
+
+            $\nabla E_w = \dfrac{\partial E}{\partial w}$
+
+          - For biases:
+
+            $\nabla E_b = \dfrac{\partial E}{\partial b}$
 
         - Update weights and biases using the gradient descent update rule with momentum:
 
           **Weight Update:**
 
-          \[
-          \Delta w^{(t)} = m \cdot \Delta w^{(t-1)} - l_r \cdot \nabla E_w
-          \]
-          \[
-          w^{(t)} = w^{(t-1)} + \Delta w^{(t)}
-          \]
+          $\Delta w^{(t)} = m \cdot \Delta w^{(t-1)} - l_r \cdot \nabla E_w$
+
+          $w^{(t)} = w^{(t-1)} + \Delta w^{(t)}$
 
           **Bias Update:**
 
-          \[
-          \Delta b^{(t)} = m \cdot \Delta b^{(t-1)} - l_r \cdot \nabla E_b
-          \]
-          \[
-          b^{(t)} = b^{(t-1)} + \Delta b^{(t)}
-          \]
+          $\Delta b^{(t)} = m \cdot \Delta b^{(t-1)} - l_r \cdot \nabla E_b$
 
-          - \(m\): Momentum coefficient (\(0 \leq m \leq 1\)).
-          - \(l_r\): Learning rate (\(0 \leq l_r \leq 1\)).
-          - \(\Delta w^{(t-1)}\): Previous weight change.
-          - \(\Delta b^{(t-1)}\): Previous bias change.
+          $b^{(t)} = b^{(t-1)} + \Delta b^{(t)}$
+
+          - $m$: Momentum coefficient ($0 \leq m \leq 1$).
+          - $l_r$: Learning rate ($0 \leq l_r \leq 1$).
+          - $\Delta w^{(t-1)}$: Previous weight change.
+          - $\Delta b^{(t-1)}$: Previous bias change.
 
      d. **Check for Convergence:**
 
-        - If the error \(E\) is less than a predefined threshold \(E_t\) or the maximum number of epochs \(I_{\text{max}}\) is reached, stop training.
+        - If the error $E$ is less than a predefined threshold $E_t$ or the maximum number of epochs $I_{\text{max}}$ is reached, stop training.
 
 **Important Concepts:**
 
-- **Gradient (\(\nabla E\))**: Indicates the direction and rate of the steepest increase of the error function.
+- **Gradient ($\nabla E$)**: Indicates the direction and rate of the steepest increase of the error function.
 - **Negative Gradient**: Used to update weights in the direction of the steepest decrease of the error function.
 - **Momentum**: Helps accelerate convergence and smooth out updates.
 
@@ -236,25 +217,19 @@ Activation functions introduce **nonlinearity** into the network, enabling it to
 
 - **Sigmoid Function**:
 
-  \[
-  \sigma(z) = \frac{1}{1 + e^{-z}}
-  \]
+  $\sigma(z) = \dfrac{1}{1 + e^{-z}}$
 
-  - Maps inputs to a range between \(0\) and \(1\).
+  - Maps inputs to a range between $0$ and $1$.
 
 - **Hyperbolic Tangent (tanh) Function**:
 
-  \[
-  \tanh(z) = \frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}
-  \]
+  $\tanh(z) = \dfrac{e^{z} - e^{-z}}{e^{z} + e^{-z}}$
 
-  - Maps inputs to a range between \(-1\) and \(1\).
+  - Maps inputs to a range between $-1$ and $1$.
 
 - **Rectified Linear Unit (ReLU)**:
 
-  \[
-  \text{ReLU}(z) = \max(0, z)
-  \]
+  $\text{ReLU}(z) = \max(0, z)$
 
   - Introduces sparsity and mitigates the vanishing gradient problem.
 
@@ -264,32 +239,26 @@ Preparing training datasets involves vectorization, labeling, and normalization.
 
 **Example Scenario:**
 
-- **Objective**: Predict miles per gallon (\(mpg\)) based on horsepower (\(hp\)).
-- **Raw Data**: \(\text{raw}_n = [m_n, hp_n, mpg_n]\), where \(m_n\) is the car model.
-- **Prepared Data**: Discard the model identifier to focus on the relationship between \(hp\) and \(mpg\).
+- **Objective**: Predict miles per gallon ($mpg$) based on horsepower ($hp$).
+- **Raw Data**: $\text{raw}_n = [m_n, hp_n, mpg_n]$, where $m_n$ is the car model.
+- **Prepared Data**: Discard the model identifier to focus on the relationship between $hp$ and $mpg$.
 - **Normalization**:
 
   - **Min-Max Feature Scaling**:
 
-    \[
-    \text{normalize}(a_n) = \frac{a_n - a_{\min}}{a_{\max} - a_{\min}}
-    \]
+    $\text{normalize}(a_n) = \dfrac{a_n - a_{\min}}{a_{\max} - a_{\min}}$
 
-    - Scales features to a range between \(0\) and \(1\).
+    - Scales features to a range between $0$ and $1$.
 
   - **Apply to Data**:
 
-    - Normalize \(hp\) values:
+    - Normalize $hp$ values:
 
-      \[
-      a_{\text{input}, n} = \text{normalize}(hp_n)
-      \]
+      $a_{\text{input}, n} = \text{normalize}(hp_n)$
 
-    - Normalize \(mpg\) values:
+    - Normalize $mpg$ values:
 
-      \[
-      a_{\text{output}, n} = \text{normalize}(mpg_n)
-      \]
+      $a_{\text{output}, n} = \text{normalize}(mpg_n)$
 
 **Importance of Normalization:**
 
