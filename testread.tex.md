@@ -78,13 +78,18 @@ $\hat{N} = [\hat{L}_i, \hat{L}_{1h}, \hat{L}_o]$
 
 - **Input to Hidden Layer**: The output activation from the input neuron $P_{1i}$ becomes the input activation for each neuron in the hidden layer $\hat{L}_{1h}$.
 
+  - Activation value from the input neuron:
+
+    $a_{1i}$
+
   - Activation values for hidden layer neurons:
 
-    $\hat{A}_{h} = [a_{1h}, a_{2h}]$
+    Each hidden neuron receives $a_{1i}$ as input.
 
-  - Weights for hidden layer neurons (from input neuron):
+  - Weights for hidden layer neurons:
 
-    $\hat{W}_{h} = [w_{1h}, w_{2h}]$, where each $w_{jh}$ corresponds to the connection from $P_{1i}$ to $P_{jh}$.
+    - For $P_{1h}$: $w_{1h}$
+    - For $P_{2h}$: $w_{2h}$
 
 - **Hidden to Output Layer**: The output activations from the hidden layer neurons $P_{1h}$ and $P_{2h}$ become the input activations for the output neuron $P_{1o}$.
 
@@ -94,7 +99,10 @@ $\hat{N} = [\hat{L}_i, \hat{L}_{1h}, \hat{L}_o]$
 
   - Weights for the output neuron:
 
-    $\hat{W}_{o} = [w_{1o}, w_{2o}]$, where $w_{1o}$ connects $P_{1h}$ to $P_{1o}$, and $w_{2o}$ connects $P_{2h}$ to $P_{1o}$.
+    $\hat{W}_{o} = [w_{1o}, w_{2o}]$, where:
+
+    - $w_{1o}$ connects $P_{1h}$ to $P_{1o}$
+    - $w_{2o}$ connects $P_{2h}$ to $P_{1o}$
 
 **Computations in Neurons:**
 
@@ -102,15 +110,27 @@ $\hat{N} = [\hat{L}_i, \hat{L}_{1h}, \hat{L}_o]$
 
   - Each computes its output activation:
 
-    $a_{jh} = \sigma(a_{1i} w_{jh} + b_{jh})$, for $j = 1, 2$
+    For $j = 1, 2$:
+
+    $a_{jh} = \sigma(a_{1i} \cdot w_{jh} + b_{jh})$
+
+    - $a_{jh}$: Activation of hidden neuron $P_{jh}$
+    - $a_{1i}$: Activation from the input neuron
+    - $w_{jh}$: Weight from $P_{1i}$ to $P_{jh}$
+    - $b_{jh}$: Bias of hidden neuron $P_{jh}$
 
 - **Output Layer Neuron** ($P_{1o}$):
 
   - Computes its output activation:
 
-    $a_{1o} = \sigma(a_{1h} w_{1o} + a_{2h} w_{2o} + b_{1o})$
+    $a_{1o} = \sigma(a_{1h} \cdot w_{1o} + a_{2h} \cdot w_{2o} + b_{1o})$
 
-**Key Point:**
+    - $a_{1o}$: Activation of output neuron $P_{1o}$
+    - $a_{1h}, a_{2h}$: Activations from hidden neurons
+    - $w_{1o}, w_{2o}$: Weights connecting hidden neurons to $P_{1o}$
+    - $b_{1o}$: Bias of output neuron $P_{1o}$
+
+**Key Points:**
 
 - The number of inputs to each neuron is determined by the number of neurons in the previous layer.
 - Each neuron produces a single output activation value.
